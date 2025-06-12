@@ -12,6 +12,7 @@ app.use(express.json()); //For parsing JSON POST bodies
 app.use('/education', require('./routes/education'));
 app.use('/work', require('./routes/work'));
 app.use('/contact', require('./routes/contact'));
+app.use('/images', express.static('images'));
 
   app.get('/', (req, res) => {
     res.send('Welcome to my portfolio API');
