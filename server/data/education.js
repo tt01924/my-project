@@ -11,7 +11,7 @@ module.exports = [{
   {
     university: "Vrije Universiteit - International Exchange",
     years: "2020 - 2022",
-    photo: "https://localhost:4000/images/vrije.jpg",
+    photo: "http://localhost:4000/images/vrije.jpg",
     degree: "MA Economics",
     courses: [
       "Micro-Economics", "Macro-Economics", "Experimental Economics"
@@ -21,7 +21,7 @@ module.exports = [{
   {
     university: "University College London (UCL)",
     years: "2024 - 2025",
-    photo: "https://localhost:4000/images/ucl.jpg",
+    photo: "http://localhost:4000/images/ucl.jpg",
     degree: "MSc Computer Science",
     courses: [
       "App Engineering", "Algorithmics and Data Structures", "Databases"
