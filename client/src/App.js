@@ -79,16 +79,14 @@ function App() {
 
       <div
         className="homePage"
-        style={{
+          style={{
+          ...homePageStyle,
           position: "absolute",
           top: position.y,
           left: position.x,
           width: size.width,
           height: size.height,
           cursor: isDragging ? "grabbing" : "grab",
-          backgroundColor: "white",
-          border: "1px solid black",
-          overflow: "scroll",
         }}
         onMouseDown={handleMouseDown}
       >
@@ -119,6 +117,12 @@ function App() {
       </div>
     </div>
   );
+}
+
+const homePageStyle = {
+  backgroundColor: "white",
+  border: "1px solid black",
+  overflow: "scroll",
 }
 
 export default App;
