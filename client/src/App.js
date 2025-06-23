@@ -10,13 +10,21 @@ function App() {
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
 
   const getRandomPosition = () => {
-    const randomX = Math.floor(Math.random() * (window.innerWidth - 600));
-    const randomY = Math.floor(Math.random() * (window.innerHeight - 600));
-    return { x: randomX, y: randomY };
+    const boxWidth = 350;
+    const boxHeight = 350;
+  
+    const centerX = (window.innerWidth - boxWidth) / 2;
+    const centerY = (window.innerHeight - boxHeight) / 2;
+  
+    const offsetX = Math.floor(Math.random() * 100) - 50; // ±50 px
+    const offsetY = Math.floor(Math.random() * 100) - 50; // ±50 px
+  
+    return { x: centerX + offsetX, y: centerY + offsetY };
   };
+  
 
   const [position, setPosition] = useState(getRandomPosition());
-  const [size, setSize] = useState({ width: 300, height: 300 });
+  const [size, setSize] = useState({ width: 350, height: 350 });
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
   const [isResizing, setIsResizing] = useState(false);
@@ -53,7 +61,7 @@ function App() {
   return (
     <div className="App" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
       <header style={{ borderBottom: "2px solid black", paddingBottom: "10px" }}>
-        TODDTAYLOR.COM
+        TODDTAYLOR.SOLUTIONS
       </header>
 
       <div
