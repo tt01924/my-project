@@ -1,10 +1,10 @@
 # my-project
 
-Domain name bought on GoDaddy
-Hosting on Render
-DNS Provider on CloudFlare
-Personal API for my information (Server)
-React Application for frontend
+Domain name bought on GoDaddy <br/>
+Hosting on Render <br/>
+DNS Provider on CloudFlare <br/>
+Personal API for my information (Server) <br/>
+React Application for frontend <br/>
 
 🔹 Option A: Render (Easy Full Stack Hosting – Free Tier)
 ✅ Great for beginners
