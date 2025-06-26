@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Contact from './components/Contact';
 import AboutMe from './components/AboutMe';
 
@@ -27,14 +27,17 @@ function App() {
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
   const [isResizing, setIsResizing] = useState(false);
+  const [isResized, setIsResized] = useState(false);
 
+
+  ////////////////////// Dragging ///////////////////////
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartPosition({ mouseX: e.clientX - position.x, mouseY: e.clientY - position.y });
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = useCallback((e) => {
     if (isDragging) {
       setPosition({
         x: e.clientX - startPosition.mouseX,
@@ -45,17 +48,35 @@ function App() {
       const newHeight = Math.max(200, e.clientY - position.y);
       setSize({ width: newWidth, height: newHeight });
     }
-  };
-
-  const handleMouseUp = () => {
+  }, [isDragging, isResizing, position.x, position.y, startPosition]);
+  
+  const handleMouseUp = useCallback(() => {
     setIsDragging(false);
-    // setIsResizing(false);
-  };
+    setIsResizing(false);
+  }, []);
 
   const handleResizeMouseDown = (e) => {
     e.stopPropagation();
-    // setIsResizing(true);
+  
+    setSize(prev => {
+      if (isResized) {
+        // Shrink back to original size
+        setIsResized(false);
+        return {
+          width: prev.width - 100,
+          height: prev.height - 100
+        };
+      } else {
+        // Enlarge
+        setIsResized(true);
+        return {
+          width: prev.width + 100,
+          height: prev.height + 100
+        };
+      }
+    });
   };
+  
 
   return (
     <div className="App" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
@@ -76,7 +97,19 @@ function App() {
         }}
         onMouseDown={handleMouseDown}
       >
+        {/* Resize handle */}
+        <div
+          style={{        
+            width: "30px",
+            height: "30px",
+            backgroundColor: "black",
+            cursor: "se-resize",
+          }}
+          onMouseDown={handleResizeMouseDown}
+        />
+        
         <p style={{ backgroundColor: "black", color: "white" }}>/home .... --- -- .</p>
+
         <h1>todd taylor</h1>
         <h2>Software Engineer / Web Dev</h2>
 
@@ -86,20 +119,6 @@ function App() {
 
         {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
         {isAboutMeOpen && <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />}
-
-        {/* Resize handle */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            width: "30px",
-            height: "30px",
-            backgroundColor: "gray",
-            cursor: "se-resize",
-          }}
-          onMouseDown={handleResizeMouseDown}
-        />
       </div>
     </div>
   );

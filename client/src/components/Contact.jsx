@@ -1,6 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 const Contact = ({ contactOpenPopup }) => {
+
+  /////////////////// Dragging /////////////////////
+const [isDragging, setIsDragging] = useState(false);
+const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
+const [isResizing, setIsResizing] = useState(false);
+
+const [position, setPosition] = useState(() => {
+  const boxWidth = 450;
+  const boxHeight = 450;
+  const centerX = (window.innerWidth - boxWidth) / 2;
+  const centerY = (window.innerHeight - boxHeight) / 2;
+  return { x: centerX, y: centerY };
+});
+
+const [size, setSize] = useState({ width: 450, height: 450 });
+
+const handleMouseDown = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  setIsDragging(true);
+  setStartPosition({ mouseX: e.clientX - position.x, mouseY: e.clientY - position.y });
+};
+
+const handleMouseMove = useCallback((e) => {
+  if (isDragging) {
+    setPosition({
+      x: e.clientX - startPosition.mouseX,
+      y: e.clientY - startPosition.mouseY,
+    });
+  } else if (isResizing) {
+    const newWidth = Math.max(200, e.clientX - position.x);
+    const newHeight = Math.max(200, e.clientY - position.y);
+    setSize({ width: newWidth, height: newHeight });
+  }
+}, [isDragging, isResizing, position.x, position.y, startPosition]);
+
+const handleMouseUp = useCallback(() => {
+  setIsDragging(false);
+  setIsResizing(false);
+}, []);
+///////////////////// End /////////////////////
+
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,12 +86,23 @@ const Contact = ({ contactOpenPopup }) => {
 
   return (
     <div
-      onClick={() => contactOpenPopup(false)}
+      // onClick={() => contactOpenPopup(false)}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
       style={overlayStyle}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        style={modalStyle}
+        style={{
+          ...modalStyle,
+          position: "absolute",
+          top: position.y,
+          left: position.x,
+          width: size.width,
+          height: size.height,
+          cursor: isDragging ? "grabbing" : "grab",
+        }}
+        onMouseDown={handleMouseDown}
       >
         <header>
           <p>/contact -.-. --- -. - .- -.-. -</p>
@@ -65,7 +119,7 @@ const Contact = ({ contactOpenPopup }) => {
             required
           />
 
-          <label>Emai</label>
+          <label>Email</label>
           <input
             type="email"
             name="email"
@@ -99,7 +153,6 @@ const Contact = ({ contactOpenPopup }) => {
             onChange={handleChange}
             required
           />
-
           <button type="submit">Send</button>
         </form>
       </div>
