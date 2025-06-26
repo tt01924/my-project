@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_USER, // your inbox
+    to: process.env.EMAIL_USER, // My inbox
     subject: `New Contact Form Submission: ${subject}`,
     html: `
       <h3>New Contact Message</h3>

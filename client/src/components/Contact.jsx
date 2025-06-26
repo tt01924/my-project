@@ -99,15 +99,15 @@ const Contact = ({ contactOpenPopup }) => {
 
 const overlayStyle = {
   position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-  backgroundColor: 'rgba(0,0,0,0.5)',
+  // backgroundColor: 'rgba(0,0,0,0.5)',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
 };
 
 const modalStyle = {
   background: 'white',
-  borderRadius: '8px',
+  border: "1px solid black",
+  overflow: "scroll",
   width: '300px',
-  padding: '20px',
   animation: 'dropTop 0.3s ease'
 };
 

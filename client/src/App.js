@@ -1,4 +1,3 @@
-
 import './App.css';
 import { useState } from 'react';
 import Contact from './components/Contact';
@@ -16,10 +15,10 @@ function App() {
     const centerX = (window.innerWidth - boxWidth) / 2;
     const centerY = (window.innerHeight - boxHeight) / 2;
   
-    const offsetX = Math.floor(Math.random() * 100) - 50; // ±50 px
-    const offsetY = Math.floor(Math.random() * 100) - 50; // ±50 px
+    // const offsetX = Math.floor(Math.random() * 100) - 50; // ±50 px
+    // const offsetY = Math.floor(Math.random() * 100) - 50; // ±50 px
   
-    return { x: centerX + offsetX, y: centerY + offsetY };
+    return { x: centerX, y: centerY }; // add in offset x & y for when you want random movement
   };
   
 
