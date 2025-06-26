@@ -19,7 +19,7 @@ const Contact = ({ contactOpenPopup }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:4000/contact', {
+      const res = await fetch('https://toddtaylor-com.onrender.com/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ const Contact = ({ contactOpenPopup }) => {
             required
           />
 
-          <label>Email</label>
+          <label>Emai</label>
           <input
             type="email"
             name="email"
@@ -99,7 +99,6 @@ const Contact = ({ contactOpenPopup }) => {
 
 const overlayStyle = {
   position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-  // backgroundColor: 'rgba(0,0,0,0.5)',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
 };
 
