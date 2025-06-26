@@ -5,6 +5,7 @@ const Contact = ({ contactOpenPopup }) => {
     name: '',
     email: '',
     mobile: '',
+    subject: '',
     message: ''
   });
 
@@ -79,6 +80,15 @@ const Contact = ({ contactOpenPopup }) => {
             name="mobile"
             value={formData.mobile}
             onChange={handleChange}
+          />
+
+          <label>Subject</label>
+          <input
+            type="text"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            required
           />
 
           <label>Message</label>
