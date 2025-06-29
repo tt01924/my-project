@@ -22,7 +22,7 @@ const Me2 = ({x, y}) => {
                 fontSize: "16px",
                 zIndex: 1000, // High z-index to appear above other elements    
             }}>
-            <img src="/media/me2.JPEG" alt="Me" style={{ width: "80%" }} />
+            <img src="/media/me2.webp" alt="Me" style={{ width: "80%" }} />
             </div>
     )
 }

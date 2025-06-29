@@ -161,6 +161,10 @@ function App() {
             }}
           >
             <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
+            
+            <Me1 aboutMeOpenPopup={setIsAboutMeOpen} />
+            <Me2 aboutMeOpenPopup={setIsAboutMeOpen} />
+            <Me3 aboutMeOpenPopup={setIsAboutMeOpen} />
           </Modal>
         )}
 
