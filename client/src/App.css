@@ -1,11 +1,12 @@
 .App {
   text-align: center;
+  background-image: url(../public/media/01.png);
   background-image: url(../public/media/02.png);
-  background-size: cover;         /* Optional: make image cover full background */
-  background-position: center;    /* Optional: center the image */
-  background-repeat: no-repeat;   /* Optional: prevent tiling */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;  
   height: 100vh; 
-  background-size: 800px, auto;
+  background-size: 900px, auto;
 }
 
 header {

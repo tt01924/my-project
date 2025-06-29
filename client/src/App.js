@@ -97,15 +97,40 @@ function App() {
         }}
         onMouseDown={handleMouseDown}
       >
-        {/* Resize handle */}
         <div
           style={{        
             width: "30px",
             height: "30px",
-            backgroundColor: "black",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundImage: "url(/media/Box_Minimise.png)",
+            cursor: "pointer",
+          }}
+          // onMouseDown={handleResizeMouseDown}
+        />
+
+        {/* Expand handle */}
+        <div
+          style={{        
+            width: "30px",
+            height: "30px",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundImage: "url(/media/Box_Fill.png)",
             cursor: "se-resize",
           }}
           onMouseDown={handleResizeMouseDown}
+        />
+        <div
+          style={{        
+            width: "30px",
+            height: "30px",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundImage: "url(/media/Box_Close.png)",
+            cursor: "pointer",
+          }}
+          // onMouseDown={handleResizeMouseDown}
         />
         
         <p style={{ backgroundColor: "black", color: "white" }}>/home .... --- -- .</p>

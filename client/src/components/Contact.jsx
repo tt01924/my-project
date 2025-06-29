@@ -170,7 +170,7 @@ const modalStyle = {
   border: "1px solid black",
   overflow: "scroll",
   width: '300px',
-  animation: 'dropTop 0.3s ease'
+  animation: 'dropTop 1.3s ease'
 };
 
 const closeButtonStyle = {
