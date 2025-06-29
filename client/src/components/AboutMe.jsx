@@ -49,6 +49,7 @@ const AboutMe = ({ aboutMeOpenPopup }) => {
             onClick={() => aboutMeOpenPopup(false)}
         >
             <header>Hello</header>
+            <p>saodndsaihfbasdksaodinas doawdklnoskladsaoi</p>
         </div>
     )
 }

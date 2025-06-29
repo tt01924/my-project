@@ -114,11 +114,12 @@ const Contact = ({ contactOpenPopup }) => {
             width: size.width,
             height: size.height,
             cursor: isDragging ? "grabbing" : "default",
+            backgroundColor: '#f0f0f0',
           }}
         >
           <header     
-            onMouseDown={handleMouseDown} // ✅ Only allow drag from header
-            style={{ cursor: "grab" }}
+            onMouseDown={handleMouseDown} 
+            style={{ cursor: isDragging ? "grabbing" : "grab",  }}
             >
             <p>/contact -.-. --- -. - .- -.-. -</p>
           </header>

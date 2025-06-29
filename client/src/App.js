@@ -3,11 +3,13 @@ import { useState, useCallback } from 'react';
 import Contact from './components/Contact';
 import AboutMe from './components/AboutMe';
 import Modal from './components/Modal/index';
+import Me3 from './components/Me3';
 
 
 function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+  const [me, setMe] = useState([]);
 
   const getRandomPosition = () => {
     const boxWidth = 350;
@@ -29,8 +31,6 @@ function App() {
   const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
   const [isResizing, setIsResizing] = useState(false);
   const [isResized, setIsResized] = useState(false);
-
-  /////////////////////// Modal Animation ///////////////////////
 
 
   ////////////////////// Dragging ///////////////////////
@@ -95,9 +95,8 @@ function App() {
             left: position.x,
             width: size.width,
             height: size.height,
-            cursor: isDragging ? "grabbing" : "grab",
           }}
-        onMouseDown={handleMouseDown}
+        // onMouseDown={handleMouseDown}
       >
         <div
           style={{        
@@ -108,7 +107,6 @@ function App() {
             backgroundImage: "url(/media/Box_Minimise.png)",
             cursor: "pointer",
           }}
-          // onMouseDown={handleResizeMouseDown}
         />
 
         {/* Expand handle */}
@@ -135,13 +133,29 @@ function App() {
           // onMouseDown={handleResizeMouseDown}
         />
         
-        <p style={{ backgroundColor: "black", color: "white" }}>/home .... --- -- .</p>
+        <p style={{ backgroundColor: "black", color: "white", cursor: isDragging ? "grabbing" : "grab", }}
+            onMouseDown={handleMouseDown}>/home .... --- -- .</p>
 
         <h1>todd taylor</h1>
         <h2>Software Engineer / Web Dev</h2>
 
         {/* Section buttons */}
-        <button className="about" onClick={() => setIsAboutMeOpen(prev => !prev)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+        <button className="about" 
+          onClick={() => setIsAboutMeOpen(prev => {
+            const next = !prev;
+            if (next) {
+              const newBoxes = Array.from({ length: 3 }, () => ({
+              id: crypto.randomUUID(),
+              ...getRandomPosition()
+              }));
+              setMe(newBoxes);
+            } else {
+              // Clear Me3 components when closing About Me
+              setMe([]);
+            }
+            return next;
+          })} 
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
           <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
         </button>
 
@@ -154,12 +168,22 @@ function App() {
         
 
         {isAboutMeOpen && (
-          <Modal id="about-modal" isOpen={isAboutMeOpen} onClose={() => setIsAboutMeOpen(false)}>
+          <Modal isOpen={isAboutMeOpen} onClose={() => {
+            setIsAboutMeOpen(false);
+            setMe([]);
+            }}
+          >
             <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
           </Modal>
         )}
 
       </div>
+
+      {/* Render Me3 components outside of homePage to avoid conflicts */}
+      {me.map(({ id, x, y }) => (
+        <Me3 key={id} x={x} y={y} />
+      ))}
+
     </div>
   );
 }
