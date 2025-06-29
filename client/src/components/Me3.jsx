@@ -8,7 +8,7 @@ const Me3 = ({x, y}) => {
                 background: 'white',
                 
                 overflow: 'scroll',
-                width: '300px',
+                width: '500px',
                 animation: 'dropTop 0.9s ease',
                 position: "fixed", // Changed from absolute to fixed for better positioning
                 top: y,
@@ -23,7 +23,7 @@ const Me3 = ({x, y}) => {
                 fontSize: "16px",
                 zIndex: 1000, // High z-index to appear above other elements
             }}>
-            <img src="/media/me1.jpg" alt="Me" style={{ width: "80%" }} />
+            <img src="/media/me3.jpg" alt="Me" style={{ width: "80%" }} />
         </div>
         
 

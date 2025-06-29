@@ -3,26 +3,26 @@ import { useState, useCallback } from 'react';
 import Contact from './components/Contact';
 import AboutMe from './components/AboutMe';
 import Modal from './components/Modal/index';
+import Me1 from './components/Me1';
+import Me2 from './components/Me2';
 import Me3 from './components/Me3';
 
 
 function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
-  const [me, setMe] = useState([]);
+  
 
   const getRandomPosition = () => {
     const boxWidth = 350;
     const boxHeight = 350;
-  
-    const centerX = (window.innerWidth - boxWidth) / 2;
-    const centerY = (window.innerHeight - boxHeight) / 2;
-  
-    // const offsetX = Math.floor(Math.random() * 100) - 50; // ±50 px
-    // const offsetY = Math.floor(Math.random() * 100) - 50; // ±50 px
-  
-    return { x: centerX, y: centerY }; // add in offset x & y for when you want random movement
+
+    const x = Math.floor(Math.random() * (window.innerWidth - boxWidth));
+    const y = Math.floor(Math.random() * (window.innerHeight - boxHeight));
+
+    return { x, y };
   };
+
   
 
   const [position, setPosition] = useState(getRandomPosition());
@@ -141,20 +141,7 @@ function App() {
 
         {/* Section buttons */}
         <button className="about" 
-          onClick={() => setIsAboutMeOpen(prev => {
-            const next = !prev;
-            if (next) {
-              const newBoxes = Array.from({ length: 3 }, () => ({
-              id: crypto.randomUUID(),
-              ...getRandomPosition()
-              }));
-              setMe(newBoxes);
-            } else {
-              // Clear Me3 components when closing About Me
-              setMe([]);
-            }
-            return next;
-          })} 
+          onClick={() => setIsAboutMeOpen(prev => !prev)}
           style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
           <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
         </button>
@@ -170,7 +157,7 @@ function App() {
         {isAboutMeOpen && (
           <Modal isOpen={isAboutMeOpen} onClose={() => {
             setIsAboutMeOpen(false);
-            setMe([]);
+            // setMe([]);
             }}
           >
             <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
@@ -179,10 +166,13 @@ function App() {
 
       </div>
 
-      {/* Render Me3 components outside of homePage to avoid conflicts */}
-      {me.map(({ id, x, y }) => (
-        <Me3 key={id} x={x} y={y} />
-      ))}
+      {isAboutMeOpen && (
+        <>
+          <Me1 {...getRandomPosition()} />
+          <Me2 {...getRandomPosition()} />
+          <Me3 {...getRandomPosition()} />
+        </>
+      )}
 
     </div>
   );
