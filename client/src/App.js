@@ -90,14 +90,13 @@ function App() {
       <div
         className="homePage"
           style={{
-          ...homePageStyle,
-          position: "absolute",
-          top: position.y,
-          left: position.x,
-          width: size.width,
-          height: size.height,
-          cursor: isDragging ? "grabbing" : "grab",
-        }}
+            position: "absolute",
+            top: position.y,
+            left: position.x,
+            width: size.width,
+            height: size.height,
+            cursor: isDragging ? "grabbing" : "grab",
+          }}
         onMouseDown={handleMouseDown}
       >
         <div
@@ -142,27 +141,18 @@ function App() {
         <h2>Software Engineer / Web Dev</h2>
 
         {/* Section buttons */}
-        <button className="contact" onClick={() => setIsContactOpen(true)}>Contact</button>
-        <button className="about" onClick={() => setIsAboutMeOpen(true)}>About</button>
+        <button className="about" onClick={() => setIsAboutMeOpen(prev => !prev)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
+        </button>
 
-        {/* {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
-        {isAboutMeOpen && <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />} */}
+        <button className="contact" onClick={() => setIsContactOpen(prev => !prev)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+          <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
+        </button>
+
+
+        {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
         
-        {/* <Modal
-          id="contact-modal"
-          isOpen={contactOpen}
-          onClose={() => setContactOpen(false)}
-        >
-          <Contact onClose={() => setContactOpen(false)} />
-        </Modal> */}
 
-
-
-        {isContactOpen && (
-          <Modal id="contact-modal" isOpen={isContactOpen} onClose={() => setIsContactOpen(false)}>
-            <Contact contactOpenPopup={setIsContactOpen} />
-          </Modal>
-        )}
         {isAboutMeOpen && (
           <Modal id="about-modal" isOpen={isAboutMeOpen} onClose={() => setIsAboutMeOpen(false)}>
             <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
@@ -172,12 +162,6 @@ function App() {
       </div>
     </div>
   );
-}
-
-const homePageStyle = {
-  backgroundColor: "white",
-  border: "1px solid black",
-  overflow: "scroll",
 }
 
 export default App;
