@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useCallback } from 'react';
 import Contact from './components/Contact';
 import AboutMe from './components/AboutMe';
+import Modal from './components/Modal/index';
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
   const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
   const [isResizing, setIsResizing] = useState(false);
   const [isResized, setIsResized] = useState(false);
+
+  /////////////////////// Modal Animation ///////////////////////
 
 
   ////////////////////// Dragging ///////////////////////
@@ -142,8 +145,30 @@ function App() {
         <button className="contact" onClick={() => setIsContactOpen(true)}>Contact</button>
         <button className="about" onClick={() => setIsAboutMeOpen(true)}>About</button>
 
-        {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
-        {isAboutMeOpen && <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />}
+        {/* {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
+        {isAboutMeOpen && <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />} */}
+        
+        {/* <Modal
+          id="contact-modal"
+          isOpen={contactOpen}
+          onClose={() => setContactOpen(false)}
+        >
+          <Contact onClose={() => setContactOpen(false)} />
+        </Modal> */}
+
+
+
+        {isContactOpen && (
+          <Modal id="contact-modal" isOpen={isContactOpen} onClose={() => setIsContactOpen(false)}>
+            <Contact contactOpenPopup={setIsContactOpen} />
+          </Modal>
+        )}
+        {isAboutMeOpen && (
+          <Modal id="about-modal" isOpen={isAboutMeOpen} onClose={() => setIsAboutMeOpen(false)}>
+            <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
+          </Modal>
+        )}
+
       </div>
     </div>
   );

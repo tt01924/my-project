@@ -46,7 +46,7 @@ const Modal = styled.div`
     transition: all 0.3s;
   }
   .background {
-    background: rgba(0, 0, 0, 0.5);
+    
     position: fixed;
     z-index: 1040;
     display: block;

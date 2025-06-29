@@ -97,7 +97,7 @@ const handleMouseUp = useCallback(() => {
           ...modalStyle,
           position: "absolute",
           top: position.y,
-          left: position.x,
+          left: position,
           width: size.width,
           height: size.height,
           cursor: isDragging ? "grabbing" : "grab",
@@ -107,6 +107,7 @@ const handleMouseUp = useCallback(() => {
         <header>
           <p>/contact -.-. --- -. - .- -.-. -</p>
           <button onClick={() => contactOpenPopup(false)} style={closeButtonStyle}>X</button>
+
         </header>
 
         <form onSubmit={handleSubmit}>

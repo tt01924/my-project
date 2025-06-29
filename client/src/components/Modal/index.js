@@ -71,18 +71,18 @@ class Modal extends Component {
         onTransitionEnd={this.transitionEnd}
       >
         <div className="box-dialog">
-          <div className="box-header">
+          {/* <div className="box-header">
             <h4 className="box-title">Pure React Modal</h4>
             <button onClick={this.handleClick} className="close">
               ×
             </button>
-          </div>
-          <div className="box-content">{this.props.children}</div>
-          <div className="box-footer">
+          </div> */}
+          <div>{this.props.children}</div>
+          {/* <div className="box-footer">
             <button onClick={this.handleClick} className="close">
               Close
             </button>
-          </div>
+          </div> */}
         </div>
         <div
           className={`background`}
