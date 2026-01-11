@@ -98,43 +98,53 @@ function App() {
           }}
         // onMouseDown={handleMouseDown}
       >
-        <div
-          style={{        
-            width: "30px",
-            height: "30px",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundImage: "url(/media/Box_Minimise.png)",
-            cursor: "pointer",
-          }}
-        />
+        <nav>
+          <ul>
+            <li
+              style={{        
+                width: "30px",
+                height: "30px",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundImage: "url(/media/Box_Minimise.png)",
+                cursor: "pointer",
+              }}
+            >
+            </li>
 
-        {/* Expand handle */}
-        <div
-          style={{        
-            width: "30px",
-            height: "30px",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundImage: "url(/media/Box_Fill.png)",
-            cursor: "se-resize",
-          }}
-          onMouseDown={handleResizeMouseDown}
-        />
-        <div
-          style={{        
-            width: "30px",
-            height: "30px",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundImage: "url(/media/Box_Close.png)",
-            cursor: "pointer",
-          }}
-          // onMouseDown={handleResizeMouseDown}
-        />
-        
-        <p style={{ backgroundColor: "black", color: "white", cursor: isDragging ? "grabbing" : "grab", }}
-            onMouseDown={handleMouseDown}>/home .... --- -- .</p>
+            {/* Expand handle */}
+            <li
+              style={{        
+                width: "30px",
+                height: "30px",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundImage: "url(/media/Box_Fill.png)",
+                cursor: "se-resize",
+              }}
+              onMouseDown={handleResizeMouseDown}
+            >
+            </li>
+
+            {/* Close button */}
+            <li
+              style={{        
+                width: "30px",
+                height: "30px",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundImage: "url(/media/Box_Close.png)",
+                cursor: "pointer",
+              }}
+              // onMouseDown={handleResizeMouseDown}
+            >
+            </li>
+          </ul>
+          
+          <p style={{ backgroundColor: "black", color: "white", cursor: isDragging ? "grabbing" : "grab", width: "70%", paddingBottom: "5px", paddingTop: "5px"}}
+              onMouseDown={handleMouseDown}>/home .... --- -- .</p>
+          <p style={{ backgroundColor: "black", height: "2px"}}></p>
+        </nav>
 
         <h1>todd taylor</h1>
         <h2>Software Engineer / Web Dev</h2>

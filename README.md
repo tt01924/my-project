@@ -4,7 +4,7 @@ Domain name bought on GoDaddy <br/>
 Hosting on Render <br/>
 DNS Provider on CloudFlare <br/>
 Personal API for my information (Server) <br/>
-React Application for frontend <br/>
+React Application for frontend (Client)<br/>
 
 🔹 Option A: Render (Easy Full Stack Hosting – Free Tier)
 ✅ Great for beginners
@@ -54,3 +54,12 @@ Store your images in /public/images/ in React.
 Or host them on Cloudinary, S3, or a GitHub repo with public URLs.
 
 Just link to them via the API (image: 'https://cdn.example.com/project.png').
+
+## To start locally
+- Enter the `client` directory.
+- Run `npm install` in the CLI.
+- Run `npm start`.
+
+
+-------
+We can look at delete the API as we are not providing dynamic images at this stage.
