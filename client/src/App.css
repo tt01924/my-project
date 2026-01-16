@@ -8,25 +8,14 @@
   box-sizing: inherit;
 }
 
-.App {
-  text-align: center;
-  background-image: url(../public/media/01.png);
-  background-image: url(../public/media/02.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;  
-  height: 100vh; 
-  background-size: 900px, auto;
-  background-color: #ffffff;
-}
-
 .homePage {
   background-color: #f0f0f0;
-  border: 1px solid black;
+  border: 2px solid black;
   overflow: scroll;
 }
 
 header {
+  padding-top: 10px;
   border-bottom: 2px solid black;
   padding-bottom: 10px;
 }
@@ -36,11 +25,6 @@ li {
   display: inline-block;
   margin: 0;
   padding: 0;
-}
-
-p {
-  background-color: black;
-  color: white;
 }
 
 @media (max-width: 600px) {

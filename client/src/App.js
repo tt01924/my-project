@@ -1,17 +1,24 @@
 import './App.css';
+import './defaultBoxStyle/nav.css';
 import { useState, useCallback } from 'react';
-import Contact from './components/Contact';
-import AboutMe from './components/AboutMe';
-import Modal from './components/Modal/index';
-import Me1 from './components/Me1';
-import Me2 from './components/Me2';
-import Me3 from './components/Me3';
 
+const backgrounds = [
+  "/media/background/background1.png",
+  "/media/background/background2.png",
+  "/media/background/background3.jpg",
+  "/media/background/background4.jpg",
+  "/media/background/background5.jpg",
+];
 
 function App() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
-  const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
-  
+
+  // Sequential background cycle
+  const [currentBackground] = useState(() => {
+    const lastIndex = parseInt(localStorage.getItem('backgroundIndex') || '0', 10);
+    const nextIndex = (lastIndex + 1) % backgrounds.length;
+    localStorage.setItem('backgroundIndex', nextIndex.toString());
+    return backgrounds[nextIndex];
+  });
 
   const getRandomPosition = () => {
     const boxWidth = 350;
@@ -82,8 +89,16 @@ function App() {
   
 
   return (
-    <div className="App" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
-      <header style={{ borderBottom: "2px solid black", paddingBottom: "10px" }}>
+    <div className="App" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}       
+    style={{
+        backgroundImage: `url(${currentBackground})`,
+        backgroundSize: currentBackground.toLowerCase().endsWith('.png') ? "700px auto" : "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "100vh",
+        backgroundColor: "#f0f0f0",
+      }}>
+      <header>
         TODDTAYLOR.SOLUTIONS
       </header>
 
@@ -100,9 +115,7 @@ function App() {
       >
         <nav>
           <ul>
-              <p style={{ backgroundColor: "black", color: "white", cursor: isDragging ? "grabbing" : "grab", width: "50%", paddingBottom: "5px", paddingTop: "5px"}}
-                  onMouseDown={handleMouseDown}>/home .... --- -- .
-              </p>
+            <div className='pageName'>Home</div>
               
             <li
               style={{        
@@ -148,47 +161,9 @@ function App() {
 
         <p style={{ backgroundColor: "black", height: "2px"}}></p>
 
-        <h1>todd taylor</h1>
-        <h2>Software Engineer / Web Dev</h2>
-
-        {/* Section buttons */}
-        <button className="about" 
-          onClick={() => setIsAboutMeOpen(prev => !prev)}
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
-          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
-        </button>
-
-        <button className="contact" onClick={() => setIsContactOpen(prev => !prev)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
-          <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
-        </button>
-
-
-        {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
-        
-
-        {isAboutMeOpen && (
-          <Modal isOpen={isAboutMeOpen} onClose={() => {
-            setIsAboutMeOpen(false);
-            // setMe([]);
-            }}
-          >
-            <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
-            
-            <Me1 aboutMeOpenPopup={setIsAboutMeOpen} />
-            <Me2 aboutMeOpenPopup={setIsAboutMeOpen} />
-            <Me3 aboutMeOpenPopup={setIsAboutMeOpen} />
-          </Modal>
-        )}
+        {/* Section buttons GO HERE*/}
 
       </div>
-
-      {isAboutMeOpen && (
-        <>
-          <Me1 {...getRandomPosition()} />
-          <Me2 {...getRandomPosition()} />
-          <Me3 {...getRandomPosition()} />
-        </>
-      )}
 
     </div>
   );
