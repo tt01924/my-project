@@ -5,9 +5,9 @@ import { useState, useCallback } from 'react';
 const backgrounds = [
   "/media/background/background1.png",
   "/media/background/background2.png",
-  "/media/background/background3.jpg",
-  "/media/background/background4.jpg",
-  "/media/background/background5.jpg",
+  "/media/background/background3.webp",
+  "/media/background/background4.webp",
+  "/media/background/background5.webp",
 ];
 
 function App() {
