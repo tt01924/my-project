@@ -100,6 +100,10 @@ function App() {
       >
         <nav>
           <ul>
+              <p style={{ backgroundColor: "black", color: "white", cursor: isDragging ? "grabbing" : "grab", width: "50%", paddingBottom: "5px", paddingTop: "5px"}}
+                  onMouseDown={handleMouseDown}>/home .... --- -- .
+              </p>
+              
             <li
               style={{        
                 width: "30px",
@@ -119,7 +123,7 @@ function App() {
                 height: "30px",
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
-                backgroundImage: "url(/media/Box_Fill.png)",
+                backgroundImage: "url(/media/Box_FIll.png)",
                 cursor: "se-resize",
               }}
               onMouseDown={handleResizeMouseDown}
@@ -140,11 +144,9 @@ function App() {
             >
             </li>
           </ul>
-          
-          <p style={{ backgroundColor: "black", color: "white", cursor: isDragging ? "grabbing" : "grab", width: "70%", paddingBottom: "5px", paddingTop: "5px"}}
-              onMouseDown={handleMouseDown}>/home .... --- -- .</p>
-          <p style={{ backgroundColor: "black", height: "2px"}}></p>
         </nav>
+
+        <p style={{ backgroundColor: "black", height: "2px"}}></p>
 
         <h1>todd taylor</h1>
         <h2>Software Engineer / Web Dev</h2>
