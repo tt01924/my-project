@@ -1,6 +1,24 @@
 .pageName {
-    color: black;
+    color: white;
+    background-color: #0000ff;
     font-weight: bold;
-    font-size: 1.5em;
-    margin: 10px 0;
+    font-size: 1.1em;
+    border: 2px solid black;
+    /* margin: 10px 0; */
+    font-family: "pageFont";
+}
+
+li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "pageFont";
+  src: url("../../public/fonts/pageFont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }

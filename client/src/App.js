@@ -99,7 +99,7 @@ function App() {
         backgroundColor: "#f0f0f0",
       }}>
       <header>
-        TODDTAYLOR.SOLUTIONS
+        WESSVEX.SOLUTIONS
       </header>
 
       <div
@@ -114,8 +114,8 @@ function App() {
         // onMouseDown={handleMouseDown}
       >
         <nav>
-          <ul>
-            <div className='pageName'>Home</div>
+          <ul className='site-nav'>
+            <div className='pageName'>/home</div>
               
             <li
               style={{        
