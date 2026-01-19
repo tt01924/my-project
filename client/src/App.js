@@ -89,7 +89,7 @@ function App() {
   
 
   return (
-    <div className="App" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}       
+    <div className="App flicker-effect" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}       
     style={{
         backgroundImage: `url(${currentBackground})`,
         backgroundSize: currentBackground.toLowerCase().endsWith('.png') ? "700px auto" : "cover",
