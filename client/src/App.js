@@ -65,27 +65,27 @@ function App() {
     setIsResizing(false);
   }, []);
 
-  // const handleResizeMouseDown = (e) => {
-  //   e.stopPropagation();
+  const handleResizeMouseDown = (e) => {
+    e.stopPropagation();
   
-  //   setSize(prev => {
-  //     if (isResized) {
-  //       // Shrink back to original size
-  //       setIsResized(false);
-  //       return {
-  //         width: prev.width - 100,
-  //         height: prev.height - 100
-  //       };
-  //     } else {
-  //       // Enlarge
-  //       setIsResized(true);
-  //       return {
-  //         width: prev.width + 100,
-  //         height: prev.height + 100
-  //       };
-  //     }
-  //   });
-  // };
+    setSize(prev => {
+      if (isResized) {
+        // Shrink back to original size
+        setIsResized(false);
+        return {
+          width: prev.width - 100,
+          height: prev.height - 100
+        };
+      } else {
+        // Enlarge
+        setIsResized(true);
+        return {
+          width: prev.width + 100,
+          height: prev.height + 100
+        };
+      }
+    });
+  };
   
 
   return (
@@ -125,8 +125,8 @@ function App() {
               
             <li
               style={{   
-                height: "50px",
-                width: "10%",
+                height: "30px",
+                width: "30px",
                 backgroundImage: "url(/media/Box_Minimise.png)",
                 cursor: "pointer",
               }}
@@ -136,20 +136,20 @@ function App() {
             {/* Expand handle */}
             <li
               style={{     
-                height: "50px",
-                width: "10%",
+                height: "30px",
+                width: "30px",
                 backgroundImage: "url(/media/Box_FIll.png)",
                 cursor: "se-resize",
               }}
-              // onMouseDown={handleResizeMouseDown}
+              onMouseDown={handleResizeMouseDown}
             >
             </li>
 
             {/* Close button */}
             <li
               style={{    
-                height: "50px",
-                width: "10%",
+                height: "30px",
+                width: "30px",
                 backgroundImage: "url(/media/Box_Close.png)",
                 cursor: "pointer",
               }}
@@ -158,7 +158,7 @@ function App() {
           </ul>
         </nav>
 
-        <div style={{ backgroundColor: "black", height: "2px", marginTop: "-5%"}}></div>
+        <div style={{ backgroundColor: "black", height: "2px", marginTop: "0%"}}></div>
 
         {/* Section buttons GO HERE*/}
 
