@@ -1,5 +1,6 @@
 import './App.css';
 import './defaultBoxStyle/nav.css';
+import './defaultBoxStyle/mainSection.css';
 import { useState, useCallback } from 'react';
 
 const backgrounds = [
@@ -33,7 +34,7 @@ function App() {
   
 
   const [position, setPosition] = useState(getRandomPosition());
-  const [size, setSize] = useState({ width: 350, height: 350 });
+  const [size, setSize] = useState({ width: 420, height: 420 });
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
   const [isResizing, setIsResizing] = useState(false);
@@ -98,7 +99,7 @@ function App() {
         height: "100vh",
         backgroundColor: "#f0f0f0",
       }}>
-      <header>
+      <header style={{ backgroundColor: "#f0f0f0"}}>
         WESSVEX.SOLUTIONS
       </header>
 
@@ -123,8 +124,9 @@ function App() {
                 cursor: isDragging ? "grabbing" : "grab",
               }}
               onMouseDown={handleMouseDown}
-              >/home</li>
-              
+              >/home
+            </li>
+  
             <li
               style={{   
                 height: "30px",
@@ -161,6 +163,13 @@ function App() {
         </nav>
 
         <div style={{ backgroundColor: "black", height: "2px", marginTop: "0%"}}></div>
+
+        <h1>todd <br /> taylor</h1>
+        <h2 style={{ textAlign: "right", paddingRight: "5%" }}>
+          <span style={{ color: "#282828" }}>S</span>oftware <span style={{ color: "#282828" }}>E</span>ngineer <br />
+          <span style={{ color: "#282828" }}>/</span>
+          <span style={{ color: "#282828" }}>W</span>eb <span style={{ color: "#282828" }}>D</span>ev
+        </h2>
 
         {/* Section buttons GO HERE*/}
 

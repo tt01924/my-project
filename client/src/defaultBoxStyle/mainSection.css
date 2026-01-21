@@ -1,0 +1,37 @@
+h1 {
+  font-family: "italicTitleFont";
+  font-size: 48px;
+  color: #0000ff;
+  padding-left: 5%;
+}
+
+h2 {
+  font-family: "regTitleFont";
+  font-size: 48px;
+  color: #b4b4b4;
+  padding-right: 5%;
+}
+
+
+@font-face {
+  font-family: "regTitleFont";
+  src: url("../../public/fonts/homePageRegular.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "boldTitleFont";
+  src: url("../../public/fonts/homePageBold.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "italicTitleFont";
+  src: url("../../public/fonts/homePageItalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
