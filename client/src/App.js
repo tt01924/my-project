@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import Contact from './components/Contact';
 import AboutMe from './components/AboutMe';
 import Modal from './components/Modal/index';
@@ -11,7 +11,22 @@ import Me3 from './components/Me3';
 function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
-  
+  const hasFetchedRef = useRef(false);
+
+  const API_URL = "https://h50gsrncag.execute-api.eu-west-2.amazonaws.com/count"
+
+  useEffect(() => {
+    if (hasFetchedRef.current) return;
+    hasFetchedRef.current = true;
+
+    async function fetchVisitorCount() {
+      const res = await fetch(API_URL, { method: 'POST' });
+      const data = await res.json();
+      document.getElementById('visitor-count').textContent = data.count;
+    }
+
+    fetchVisitorCount().catch(console.error);
+  }, []);
 
   const getRandomPosition = () => {
     const boxWidth = 350;
@@ -83,8 +98,9 @@ function App() {
 
   return (
     <div className="App" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
-      <header style={{ borderBottom: "2px solid black", paddingBottom: "10px" }}>
-        TODDTAYLOR.SOLUTIONS
+      <header style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+        <div style={{ position: 'absolute', left: 0 }}>No. <span id="visitor-count">...</span></div>
+        <div style={{ textAlign: "center", width: '100%' }}>TODDTAYLOR.SOLUTIONS</div>
       </header>
 
       <div
@@ -100,6 +116,16 @@ function App() {
       >
         <nav>
           <ul>
+            <li>
+              <p className='drag-handle'
+                style={{cursor: isDragging ? "grabbing" : "grab",}}
+                onMouseDown={handleMouseDown}
+              >
+                /home .... --- -- .
+              </p>
+
+            </li>
+
             <li
               style={{        
                 width: "30px",
@@ -140,9 +166,7 @@ function App() {
             >
             </li>
           </ul>
-          
-          <p style={{ backgroundColor: "black", color: "white", cursor: isDragging ? "grabbing" : "grab", width: "70%", paddingBottom: "5px", paddingTop: "5px"}}
-              onMouseDown={handleMouseDown}>/home .... --- -- .</p>
+
           <p style={{ backgroundColor: "black", height: "2px"}}></p>
         </nav>
 
