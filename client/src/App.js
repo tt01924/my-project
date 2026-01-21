@@ -111,7 +111,6 @@ function App() {
             width: size.width,
             height: size.height,
           }}
-        // onMouseDown={handleMouseDown}
       >
         <nav>
           <ul className='site-nav'>
@@ -121,7 +120,10 @@ function App() {
                 width: "66%",
                 display: "flex",
                 alignItems: "center",
-              }}>/home</li>
+                cursor: isDragging ? "grabbing" : "grab",
+              }}
+              onMouseDown={handleMouseDown}
+              >/home</li>
               
             <li
               style={{   
