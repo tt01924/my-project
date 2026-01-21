@@ -29,18 +29,61 @@
 header {
   border-bottom: 2px solid black;
   padding-bottom: 10px;
+  display: flex;
 }
+
+nav {
+  user-select: none;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  margin: 0;
+  height: 40px;              /* SINGLE SOURCE OF TRUTH */
+}
+
+
+nav li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+
+/* Left draggable title */
+nav li:first-child {
+  flex: 1;                  /* take remaining space */
+}
+
+/* Icon buttons */
+nav li:not(:first-child) {
+  width: 30px;
+  height: 100%;
+  margin-left: 6px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+.drag-handle {
+  background-color: black;
+  color: white;
+  width: 100%;
+  margin: 0;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 
 li {
   list-style-type: none;
-  display: inline-block;
   margin: 0;
   padding: 0;
-}
-
-p {
-  background-color: black;
-  color: white;
 }
 
 @media (max-width: 600px) {
