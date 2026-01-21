@@ -145,7 +145,7 @@ function App() {
                 height: "30px",
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
-                backgroundImage: "url(/media/Box_Fill.png)",
+                backgroundImage: "url(/media/Box_FIll.png)",
                 cursor: "se-resize",
               }}
               onMouseDown={handleResizeMouseDown}
@@ -169,6 +169,8 @@ function App() {
 
           <p style={{ backgroundColor: "black", height: "2px"}}></p>
         </nav>
+
+        <p style={{ backgroundColor: "black", height: "2px"}}></p>
 
         <h1>todd taylor</h1>
         <h2>Software Engineer / Web Dev</h2>
