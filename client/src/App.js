@@ -172,7 +172,7 @@ function App() {
           <p style={{ backgroundColor: "black", height: "2px"}}></p>
         </nav>
 
-        <div style={{ backgroundColor: "black", height: "2px", marginTop: "0%"}}></div>
+        {/* <div style={{ backgroundColor: "black", height: "2px", marginTop: "0%"}}></div> */}
 
         <h1>todd <br /> taylor</h1>
         <h2 style={{ textAlign: "right", paddingRight: "5%" }}>
