@@ -3,9 +3,18 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
-app.use(cors()); // Allows react app to fetch from this backend
+// Configure CORS to allow requests from your frontend domains
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://toddtaylor.solutions',
+    'https://www.toddtaylor.solutions'
+  ],
+  methods: ['GET', 'POST'],
+  credentials: true
+})); // Allows react app to fetch from this backend
 app.use(express.json()); //For parsing JSON POST bodies
 
 // Routes
