@@ -2,6 +2,11 @@ import './App.css';
 import './defaultBoxStyle/nav.css';
 import './defaultBoxStyle/mainSection.css';
 import { useState, useCallback } from 'react';
+// import Contact from './components/Contact';
+// import AboutMe from './components/AboutMe';
+// import Modal from './components/Modal/index';
+// import Me1 from './components/Me1';
+// import Me3 from './components/Me3';
 
 const backgrounds = [
   "/media/background/background1.png",
@@ -13,6 +18,9 @@ const backgrounds = [
 
 function App() {
 
+  // const [isContactOpen, setIsContactOpen] = useState(false);
+  // const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+  
   // Sequential background cycle
   const [currentBackground] = useState(() => {
     const lastIndex = parseInt(localStorage.getItem('backgroundIndex') || '0', 10);
@@ -172,8 +180,40 @@ function App() {
         </h2>
 
         {/* Section buttons GO HERE*/}
+        {/* <button className="about" 
+          onClick={() => setIsAboutMeOpen(prev => !prev)}
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
+        </button>
+
+        <button className="contact" onClick={() => setIsContactOpen(prev => !prev)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+          <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
+        </button> */}
+
+
+        {/* {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
+        
+
+        {isAboutMeOpen && (
+          <Modal isOpen={isAboutMeOpen} onClose={() => {
+            setIsAboutMeOpen(false);
+            // setMe([]);
+            }}
+          >
+            <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
+            
+            <Me1 aboutMeOpenPopup={setIsAboutMeOpen} />
+            <Me3 aboutMeOpenPopup={setIsAboutMeOpen} />
+          </Modal>
+        )} */}
 
       </div>
+      {/* {isAboutMeOpen && (
+        <>
+          <Me1 {...getRandomPosition()} />
+          <Me3 {...getRandomPosition()} />
+        </>
+      )} */}
 
     </div>
   );
