@@ -106,6 +106,8 @@ function App() {
         backgroundRepeat: "no-repeat",
         height: "100vh",
         backgroundColor: "#f0f0f0",
+        // Add this for better performance:
+        willChange: "transform", // Hint to browser for optimization
       }}>
       <header style={{ backgroundColor: "#f0f0f0"}}>
         WESSVEX.SOLUTIONS
