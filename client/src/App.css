@@ -8,83 +8,26 @@
   box-sizing: inherit;
 }
 
-.App {
+body {
+  font-family: "bookFont";
+}
+
+header {
+  padding-top: 10px;
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
   text-align: center;
-  background-image: url(../public/media/01.png);
-  background-image: url(../public/media/02.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;  
-  height: 100vh; 
-  background-size: 900px, auto;
-  background-color: #ffffff;
+  font-family: "boldFont";
+  font-size: 12px;
 }
 
 .homePage {
   background-color: #f0f0f0;
-  border: 1px solid black;
+  border: 2px solid black;
   overflow: scroll;
 }
 
-header {
-  border-bottom: 2px solid black;
-  padding-bottom: 10px;
-  display: flex;
-}
 
-nav {
-  user-select: none;
-}
-
-nav ul {
-  display: flex;
-  align-items: center;
-  padding: 0 6px;
-  margin: 0;
-  height: 40px;              /* SINGLE SOURCE OF TRUTH */
-}
-
-
-nav li {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-
-/* Left draggable title */
-nav li:first-child {
-  flex: 1;                  /* take remaining space */
-}
-
-/* Icon buttons */
-nav li:not(:first-child) {
-  width: 30px;
-  height: 100%;
-  margin-left: 6px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-
-.drag-handle {
-  background-color: black;
-  color: white;
-  width: 100%;
-  margin: 0;
-  padding: 0 8px;
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-
-li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
 
 @media (max-width: 600px) {
   /* .homePage {
@@ -98,4 +41,31 @@ li {
     margin: auto;
     cursor: default;
   } */
+}
+
+@font-face {
+  font-family: "bookFont";
+  src: url("../public/fonts/standard-book-webfont.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "boldFont";
+  src: url("../public/fonts/standard-bold-webfont.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Subtle background flicker animation */
+@keyframes backgroundFlicker {
+  0%, 100% { opacity: 1; }
+  20% { opacity: 0.90; }
+  45% { opacity: 1; }
+}
+
+.flicker-effect {
+  animation: backgroundFlicker 0.1s infinite;
 }

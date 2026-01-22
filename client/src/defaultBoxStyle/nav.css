@@ -1,0 +1,31 @@
+.site-nav {
+    display: flex;
+    padding-left: 5%;
+    list-style-type: none;
+}
+
+.pageName {
+    color: white;
+    background-color: #0000ff;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid black;
+    text-indent: 10%;
+    /* margin: 10px 0; */
+    font-family: "pageFont";
+}
+
+li {
+    list-style-type: none;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+@font-face {
+    font-family: "pageFont";
+    src: url("../../public/fonts/pageFont.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
