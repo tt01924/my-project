@@ -11,6 +11,11 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// Test GET route
+router.get('/', (req, res) => {
+  res.json({ message: "Contact endpoint is working! Use POST to send messages." });
+});
+
 router.post('/', async (req, res) => {
   const { name, email, mobile, subject, message } = req.body;
 

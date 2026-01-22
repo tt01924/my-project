@@ -78,7 +78,7 @@ const Contact = ({ contactOpenPopup }) => {
       try {
         // Use environment variable or fallback to localhost for development
         const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000';
-        const res = await fetch(`${apiUrl}/contact`, {
+        const res = await fetch('https://toddtaylor-com.onrender.com/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
