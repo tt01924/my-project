@@ -106,6 +106,8 @@ function App() {
         backgroundRepeat: "no-repeat",
         height: "100vh",
         backgroundColor: "#f0f0f0",
+        // Add this for better performance:
+        willChange: "transform", // Hint to browser for optimization
       }}>
       <header style={{ backgroundColor: "#f0f0f0"}}>
         WESSVEX.SOLUTIONS
@@ -172,7 +174,7 @@ function App() {
           <p style={{ backgroundColor: "black", height: "2px"}}></p>
         </nav>
 
-        <div style={{ backgroundColor: "black", height: "2px", marginTop: "0%"}}></div>
+        {/* <div style={{ backgroundColor: "black", height: "2px", marginTop: "0%"}}></div> */}
 
         <h1>todd <br /> taylor</h1>
         <h2 style={{ textAlign: "right", paddingRight: "5%" }}>
