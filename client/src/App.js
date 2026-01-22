@@ -1,7 +1,7 @@
 import './App.css';
 import './defaultBoxStyle/nav.css';
 import './defaultBoxStyle/mainSection.css';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 // import Contact from './components/Contact';
 // import AboutMe from './components/AboutMe';
 // import Modal from './components/Modal/index';
@@ -20,6 +20,23 @@ function App() {
 
   // const [isContactOpen, setIsContactOpen] = useState(false);
   // const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+
+  const hasFetchedRef = useRef(false);
+
+  const API_URL = "https://h50gsrncag.execute-api.eu-west-2.amazonaws.com/count"
+
+  useEffect(() => {
+    if (hasFetchedRef.current) return;
+    hasFetchedRef.current = true;
+
+    async function fetchVisitorCount() {
+      const res = await fetch(API_URL, { method: 'POST' });
+      const data = await res.json();
+      document.getElementById('visitor-count').textContent = data.count;
+    }
+
+    fetchVisitorCount().catch(console.error);
+  }, []);
   
   // Sequential background cycle
   const [currentBackground] = useState(() => {
@@ -109,8 +126,9 @@ function App() {
         // Add this for better performance:
         willChange: "transform", // Hint to browser for optimization
       }}>
-      <header style={{ backgroundColor: "#f0f0f0"}}>
-        WESSVEX.SOLUTIONS
+      <header style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+        <div style={{ position: 'absolute', left: "2%" }}>No. <span id="visitor-count">...</span></div>
+        <div style={{ textAlign: "center", width: '100%' }}>TODDTAYLOR.SOLUTIONS</div>
       </header>
 
       <div
