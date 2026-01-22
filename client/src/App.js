@@ -2,7 +2,7 @@ import './App.css';
 import './defaultBoxStyle/nav.css';
 import './defaultBoxStyle/mainSection.css';
 import { useState, useCallback, useEffect, useRef } from 'react';
-// import Contact from './components/Contact';
+import Contact from './components/Contact';
 // import AboutMe from './components/AboutMe';
 // import Modal from './components/Modal/index';
 // import Me1 from './components/Me1';
@@ -18,7 +18,7 @@ const backgrounds = [
 
 function App() {
 
-  // const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   // const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
 
   const hasFetchedRef = useRef(false);
@@ -123,7 +123,6 @@ function App() {
         backgroundRepeat: "no-repeat",
         height: "100vh",
         backgroundColor: "#f0f0f0",
-        // Add this for better performance:
         willChange: "transform", // Hint to browser for optimization
       }}>
       <header style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
@@ -207,16 +206,16 @@ function App() {
           style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
           <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
         </button>
+        */}
 
         <button className="contact" onClick={() => setIsContactOpen(prev => !prev)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
           <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
-        </button> */}
+        </button> 
 
 
-        {/* {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
-        
+        {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
 
-        {isAboutMeOpen && (
+        {/* {isAboutMeOpen && (
           <Modal isOpen={isAboutMeOpen} onClose={() => {
             setIsAboutMeOpen(false);
             // setMe([]);

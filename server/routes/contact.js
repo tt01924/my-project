@@ -11,12 +11,18 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// Test GET route
+router.get('/', (req, res) => {
+  res.json({ message: "Contact endpoint is working! Use POST to send messages." });
+});
+
 router.post('/', async (req, res) => {
   const { name, email, mobile, subject, message } = req.body;
 
   const mailOptions = {
-    from: email,
+    from: process.env.EMAIL_USER, // Use your verified Gmail address as sender
     to: process.env.EMAIL_USER, // My inbox
+    replyTo: email, // User's email for replies
     subject: `New Contact Form Submission: ${subject}`,
     html: `
       <h3>New Contact Message</h3>
@@ -29,10 +35,16 @@ router.post('/', async (req, res) => {
   };
 
   try {
+    console.log('Attempting to send email with config:', {
+      user: process.env.EMAIL_USER,
+      hasPassword: !!process.env.EMAIL_PASS
+    });
     await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully!');
     res.json({ success: true, message: "Message sent successfully!" });
   } catch (err) {
-    console.error('Email failed:', err);
+    console.error('Email failed with error:', err.message);
+    console.error('Full error:', err);
     res.status(500).json({ success: false, message: "Failed to send message." });
   }
 });
