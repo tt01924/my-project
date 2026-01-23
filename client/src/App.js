@@ -191,8 +191,6 @@ function App() {
           <p style={{ backgroundColor: "black", height: "2px"}}></p>
         </nav>
 
-        {/* <div style={{ backgroundColor: "black", height: "2px", marginTop: "0%"}}></div> */}
-
         <h1>todd <br /> taylor</h1>
         <h2 style={{ textAlign: "right", paddingRight: "5%" }}>
           <span style={{ color: "#282828" }}>S</span>oftware <span style={{ color: "#282828" }}>E</span>ngineer <br />
@@ -201,15 +199,15 @@ function App() {
         </h2>
 
         {/* Section buttons GO HERE*/}
+
         {/* <button className="about" 
-          onClick={() => setIsAboutMeOpen(prev => !prev)}
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
-          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
+          onClick={() => setIsAboutMeOpen(prev => !prev)}>
+          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
         </button>
         */}
 
-        <button className="contact" onClick={() => setIsContactOpen(prev => !prev)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
-          <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="About" style={{ width: '100px', height: 'auto' }} />
+        <button className="contact" onClick={() => setIsContactOpen(prev => !prev)}>
+          <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="Contact" />
         </button> 
 
 
