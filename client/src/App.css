@@ -22,16 +22,6 @@ header {
   background-color: #f0f0f0;
 }
 
-.homePage {
-  background-color: #f0f0f0;
-  border: 2px solid black;
-  /* overflow: hidden; */
-  /* Add these for better drag performance */
-  will-change: transform;
-  transform: translateZ(0); /* Force hardware acceleration */
-  backface-visibility: hidden;
-}
-
 @media (max-width: 600px) {
   /* .homePage {
     position: absolute;
