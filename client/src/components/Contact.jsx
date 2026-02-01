@@ -1,89 +1,26 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 import '../defaultBoxStyle/nav.css'
+import useDraggable from '../hooks/useDraggable';
 
 const Contact = ({ contactOpenPopup }) => {
 
-  /////////////////// Dragging /////////////////////
-  const [isDragging, setIsDragging] = useState(false);
-  const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
-  const [isResizing, setIsResizing] = useState(false);
-
-  const [position, setPosition] = useState(() => {
-    const boxWidth = 300;
-    const boxHeight = 300;
-    const centerX = (window.innerWidth - boxWidth) / 2;
-    const centerY = (window.innerHeight - boxHeight) / 2;
-    return { x: centerX, y: centerY };
+  // Use the custom draggable hook
+  const {
+    position,
+    size,
+    isDragging,
+    isMinimized,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+    handleResizeMouseDown,
+    handleResizeToggle,
+    handleMinimize,
+  } = useDraggable({
+    initialSize: { width: 300, height: 300 },
+    minWidth: 200,
+    minHeight: 200,
   });
-
-  const [size, setSize] = useState({ width: 300, height: 300 });
-
-  // to restore after minimize
-  const [prevSize, setPrevSize] = useState(size);
-  const [isMinimized, setIsMinimized] = useState(false);
-
-  const handleMouseDown = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
-    setStartPosition({ mouseX: e.clientX - position.x, mouseY: e.clientY - position.y });
-  };
-
-  // start resizing (from the expand handle)
-  const handleResizeMouseDown = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsResizing(true);
-    // no startPosition needed for our resize logic, but store previous size for safety
-    setPrevSize(size);
-  };
-
-  const handleMouseMove = useCallback((e) => {
-    if (isDragging) {
-      setPosition({
-        x: e.clientX - startPosition.mouseX,
-        y: e.clientY - startPosition.mouseY,
-      });
-    } else if (isResizing) {
-      const newWidth = Math.max(200, e.clientX - position.x);
-      const newHeight = Math.max(200, e.clientY - position.y);
-      setSize({ width: newWidth, height: newHeight });
-    }
-  }, [isDragging, isResizing, position.x, position.y, startPosition]);
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-    setIsResizing(false);
-  }, []);
-
-  // Add global event listeners for dragging/resizing
-  useEffect(() => {
-    if (isDragging || isResizing) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-
-      return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [isDragging, isResizing, handleMouseMove, handleMouseUp]);
-  ///////////////////// End /////////////////////
-
-  // Minimize / Close handlers
-  const handleMinimize = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!isMinimized) {
-      setPrevSize(size);
-      setSize({ width: Math.max(200, size.width), height: 40 });
-      setIsMinimized(true);
-    } else {
-      // restore
-      setSize(prevSize);
-      setIsMinimized(false);
-    }
-  };
 
   const handleClose = (e) => {
     e && e.stopPropagation();
@@ -165,7 +102,7 @@ const Contact = ({ contactOpenPopup }) => {
               }}
               onMouseDown={handleMouseDown}
             >
-              /home
+              /contact
             </li>
 
             <li
@@ -190,10 +127,10 @@ const Contact = ({ contactOpenPopup }) => {
                 width: "30px",
                 backgroundImage: "url(/media/Box_FIll.png)",
                 cursor: "se-resize",
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center'
+                // backgroundRepeat: 'no-repeat',
+                // backgroundPosition: 'center'
               }}
-              onMouseDown={handleResizeMouseDown}
+              onMouseDown={handleResizeToggle}
             >
             </li>
 
@@ -220,7 +157,6 @@ const Contact = ({ contactOpenPopup }) => {
         {!isMinimized && (
           <>
             <div style={{ padding: 12 }}>
-              <p>/contact -.-. --- -. - .- -.-. -</p>
 
               <form onSubmit={handleSubmit}>
                 <label>Name</label>
@@ -287,6 +223,16 @@ const modalStyle = {
   overflow: "scroll",
   width: '300px',
   animation: 'dropTop 1.3s ease'
+};
+
+const closeButtonStyle = {
+  position: 'absolute',
+  top: 10,
+  right: 10,
+  background: 'transparent',
+  border: 'none',
+  fontSize: '16px',
+  cursor: 'pointer'
 };
 
 export default Contact;
