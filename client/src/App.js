@@ -20,6 +20,7 @@ const backgrounds = [
 function App() {
 
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [contactPosition, setContactPosition] = useState(null);
   // const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
 
   const hasFetchedRef = useRef(false);
@@ -51,8 +52,14 @@ function App() {
     const boxWidth = 350;
     const boxHeight = 350;
 
-    const x = Math.floor(Math.random() * (window.innerWidth - boxWidth));
-    const y = Math.floor(Math.random() * (window.innerHeight - boxHeight));
+    // Define the center of the screen
+    const centerX = (window.innerWidth - boxWidth) / 2;
+    const centerY = (window.innerHeight - boxHeight) / 2;
+
+    const maxOffset = 200; // Adjust this to control randomness range
+
+    const x = centerX + (Math.random() * maxOffset * 2 - maxOffset);
+    const y = centerY + (Math.random() * maxOffset * 2 - maxOffset);
 
     return { x, y };
   };
@@ -164,12 +171,17 @@ function App() {
         </button>
         */}
 
-        <button className="contact" onClick={() => setIsContactOpen(prev => !prev)}>
+        <button className="contact" onClick={() => {
+          if (!isContactOpen) {
+            setContactPosition(getRandomPosition());
+          }
+          setIsContactOpen(prev => !prev);
+        }}>
           <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="Contact" />
         </button> 
 
 
-        {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
+        {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
 
         {/* {isAboutMeOpen && (
           <Modal isOpen={isAboutMeOpen} onClose={() => {
