@@ -1,8 +1,9 @@
 import './App.css';
 import './defaultBoxStyle/nav.css';
 import './defaultBoxStyle/mainSection.css';
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Contact from './components/Contact';
+import useDraggable from './hooks/useDraggable';
 // import AboutMe from './components/AboutMe';
 // import Modal from './components/Modal/index';
 // import Me1 from './components/Me1';
@@ -19,6 +20,7 @@ const backgrounds = [
 function App() {
 
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [contactPosition, setContactPosition] = useState(null);
   // const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
 
   const hasFetchedRef = useRef(false);
@@ -50,68 +52,31 @@ function App() {
     const boxWidth = 350;
     const boxHeight = 350;
 
-    const x = Math.floor(Math.random() * (window.innerWidth - boxWidth));
-    const y = Math.floor(Math.random() * (window.innerHeight - boxHeight));
+    // Define the center of the screen
+    const centerX = (window.innerWidth - boxWidth) / 2;
+    const centerY = (window.innerHeight - boxHeight) / 2;
+
+    const maxOffset = 200; // Adjust this to control randomness range
+
+    const x = centerX + (Math.random() * maxOffset * 2 - maxOffset);
+    const y = centerY + (Math.random() * maxOffset * 2 - maxOffset);
 
     return { x, y };
   };
 
-  
-
-  const [position, setPosition] = useState(getRandomPosition());
-  const [size, setSize] = useState({ width: 420, height: 420 });
-  const [isDragging, setIsDragging] = useState(false);
-  const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
-  const [isResizing, setIsResizing] = useState(false);
-  const [isResized, setIsResized] = useState(false);
-
-
-  ////////////////////// Dragging ///////////////////////
-
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartPosition({ mouseX: e.clientX - position.x, mouseY: e.clientY - position.y });
-  };
-
-  const handleMouseMove = useCallback((e) => {
-    if (isDragging) {
-      setPosition({
-        x: e.clientX - startPosition.mouseX,
-        y: e.clientY - startPosition.mouseY,
-      });
-    } else if (isResizing) {
-      const newWidth = Math.max(200, e.clientX - position.x);
-      const newHeight = Math.max(200, e.clientY - position.y);
-      setSize({ width: newWidth, height: newHeight });
-    }
-  }, [isDragging, isResizing, position.x, position.y, startPosition]);
-  
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-    setIsResizing(false);
-  }, []);
-
-  const handleResizeMouseDown = (e) => {
-    e.stopPropagation();
-  
-    setSize(prev => {
-      if (isResized) {
-        // Shrink back to original size
-        setIsResized(false);
-        return {
-          width: prev.width - 100,
-          height: prev.height - 100
-        };
-      } else {
-        // Enlarge
-        setIsResized(true);
-        return {
-          width: prev.width + 100,
-          height: prev.height + 100
-        };
-      }
-    });
-  };
+  // Use the draggable hook for position, size, and drag/resize handlers
+  const {
+    position,
+    size,
+    isDragging,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+    handleResizeToggle,
+  } = useDraggable({
+    initialPosition: getRandomPosition(),
+    initialSize: { width: 420, height: 420 },
+  });
   
 
   return (
@@ -172,7 +137,7 @@ function App() {
                 backgroundImage: "url(/media/Box_FIll.png)",
                 cursor: "se-resize",
               }}
-              onMouseDown={handleResizeMouseDown}
+              onMouseDown={handleResizeToggle}
             >
             </li>
 
@@ -206,12 +171,14 @@ function App() {
         </button>
         */}
 
-        <button className="contact" onClick={() => setIsContactOpen(prev => !prev)}>
+        <button className="contact" onClick={() => {
+          if (!isContactOpen) {
+            setContactPosition(getRandomPosition());
+          }
+          setIsContactOpen(prev => !prev);
+        }}>
           <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="Contact" />
         </button> 
-
-
-        {isContactOpen && <Contact contactOpenPopup={setIsContactOpen} />}
 
         {/* {isAboutMeOpen && (
           <Modal isOpen={isAboutMeOpen} onClose={() => {
@@ -227,6 +194,10 @@ function App() {
         )} */}
 
       </div>
+
+      {/* Contact component moved outside homePage to prevent coupled dragging */}
+      {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
+
       {/* {isAboutMeOpen && (
         <>
           <Me1 {...getRandomPosition()} />
