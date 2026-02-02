@@ -180,9 +180,6 @@ function App() {
           <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="Contact" />
         </button> 
 
-
-        {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
-
         {/* {isAboutMeOpen && (
           <Modal isOpen={isAboutMeOpen} onClose={() => {
             setIsAboutMeOpen(false);
@@ -197,6 +194,10 @@ function App() {
         )} */}
 
       </div>
+
+      {/* Contact component moved outside homePage to prevent coupled dragging */}
+      {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
+
       {/* {isAboutMeOpen && (
         <>
           <Me1 {...getRandomPosition()} />

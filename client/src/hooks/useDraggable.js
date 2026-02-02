@@ -98,7 +98,7 @@ const useDraggable = (options = {}) => {
   }, []);
 
   // Minimize/restore
-  const handleMinimize = (e, minimizedHeight = '15%') => {
+  const handleMinimize = (e, minimizedHeight = 65) => {
     e.preventDefault();
     e.stopPropagation();
     if (!isMinimized) {
