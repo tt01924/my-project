@@ -3,6 +3,7 @@ import './defaultBoxStyle/nav.css';
 import './defaultBoxStyle/mainSection.css';
 import { useState, useEffect, useRef } from 'react';
 import Contact from './components/Contact';
+import About from './components/About';
 import useDraggable from './hooks/useDraggable';
 // import AboutMe from './components/AboutMe';
 // import Modal from './components/Modal/index';
@@ -21,6 +22,10 @@ function App() {
 
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [contactPosition, setContactPosition] = useState(null);
+
+  const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+  const [aboutMePosition, setAboutMePosition] = useState(null);
+
   // const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
 
   const hasFetchedRef = useRef(false);
@@ -178,7 +183,16 @@ function App() {
           setIsContactOpen(prev => !prev);
         }}>
           <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="Contact" />
-        </button> 
+        </button>
+
+        <button className="about" onClick={() => {
+          if (!isAboutMeOpen) {
+            setAboutMePosition(getRandomPosition());
+          }
+          setIsAboutMeOpen(prev => !prev);
+        }}>
+          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
+        </button>
 
         {/* {isAboutMeOpen && (
           <Modal isOpen={isAboutMeOpen} onClose={() => {
@@ -197,6 +211,7 @@ function App() {
 
       {/* Contact component moved outside homePage to prevent coupled dragging */}
       {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
+      {isAboutMeOpen && <About initialPosition={aboutMePosition} aboutMeOpenPopup={setIsAboutMeOpen} />}
 
       {/* {isAboutMeOpen && (
         <>
