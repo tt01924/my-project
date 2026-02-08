@@ -4,11 +4,11 @@ import './defaultBoxStyle/mainSection.css';
 import { useState, useEffect, useRef } from 'react';
 import Contact from './components/Contact';
 import About from './components/About';
+import AboutPictureOne from './components/AboutPictureOne';
+import AboutPictureTwo from './components/AboutPictureTwo';
+import AboutPictureThree from './components/AboutPictureThree';
+
 import useDraggable from './hooks/useDraggable';
-// import AboutMe from './components/AboutMe';
-// import Modal from './components/Modal/index';
-// import Me1 from './components/Me1';
-// import Me3 from './components/Me3';
 
 const backgrounds = [
   "/media/background/background1.png",
@@ -26,7 +26,14 @@ function App() {
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
   const [aboutMePosition, setAboutMePosition] = useState(null);
 
-  // const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+  const [isAboutPictureOneOpen, setIsAboutPictureOneOpen] = useState(false);
+  const [aboutPictureOnePosition, setAboutPictureOnePosition] = useState(null);
+
+  const [isAboutPictureTwoOpen, setIsAboutPictureTwoOpen] = useState(false);
+  const [aboutPictureTwoPosition, setAboutPictureTwoPosition] = useState(null);
+
+  const [isAboutPictureThreeOpen, setIsAboutPictureThreeOpen] = useState(false);
+  const [aboutPictureThreePosition, setAboutPictureThreePosition] = useState(null);
 
   const hasFetchedRef = useRef(false);
 
@@ -181,38 +188,21 @@ function App() {
 
         <button className="about" onClick={() => {
           if (!isAboutMeOpen) {
-            setAboutMePosition(getRandomPosition());
+            setAboutMePosition(getRandomPosition()) && setAboutPictureOnePosition(getRandomPosition()) && setAboutPictureTwoPosition(getRandomPosition()) && setAboutPictureThreePosition(getRandomPosition());
           }
-          setIsAboutMeOpen(prev => !prev);
+          setIsAboutMeOpen(prev => !prev) && setIsAboutPictureOneOpen(prev => !prev) && setIsAboutPictureTwoOpen(prev => !prev) && setIsAboutPictureThreeOpen(prev => !prev);
         }}>
           <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
         </button>
-
-        {/* {isAboutMeOpen && (
-          <Modal isOpen={isAboutMeOpen} onClose={() => {
-            setIsAboutMeOpen(false);
-            // setMe([]);
-            }}
-          >
-            <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
-            
-            <Me1 aboutMeOpenPopup={setIsAboutMeOpen} />
-            <Me3 aboutMeOpenPopup={setIsAboutMeOpen} />
-          </Modal>
-        )} */}
 
       </div>
 
       {/* Contact component moved outside homePage to prevent coupled dragging */}
       {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
       {isAboutMeOpen && <About initialPosition={aboutMePosition} aboutMeOpenPopup={setIsAboutMeOpen} />}
-
-      {/* {isAboutMeOpen && (
-        <>
-          <Me1 {...getRandomPosition()} />
-          <Me3 {...getRandomPosition()} />
-        </>
-      )} */}
+      {isAboutMeOpen && <AboutPictureOne initialPosition={aboutPictureOnePosition} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} />}
+      {isAboutMeOpen && <AboutPictureTwo initialPosition={aboutPictureTwoPosition} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
+      {isAboutMeOpen && <AboutPictureThree initialPosition={aboutPictureThreePosition} aboutPictureThreeOpenPopup={setIsAboutPictureThreeOpen} />}
 
     </div>
   );
