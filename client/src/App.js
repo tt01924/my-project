@@ -170,12 +170,6 @@ function App() {
 
         {/* Section buttons GO HERE*/}
 
-        {/* <button className="about" 
-          onClick={() => setIsAboutMeOpen(prev => !prev)}>
-          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
-        </button>
-        */}
-
         <button className="contact" onClick={() => {
           if (!isContactOpen) {
             setContactPosition(getRandomPosition());

@@ -27,52 +27,6 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
     aboutMeOpenPopup(false);
   };
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    subject: '',
-    message: ''
-  });
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      // Use Render API for contact form
-      const res = await fetch('https://toddtaylor-com.onrender.com/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const data = await res.json();
-      setIsLoading(false);
-      if (data.success) {
-        alert('Message sent!');
-        aboutMeOpenPopup(false);
-      } else {
-        alert('Message failed.');
-      }
-    } catch (err) {
-      console.error(err);
-      setIsLoading(false);
-      alert('Error sending message.');
-    }
-  };
-
   return (
     <div
       onClick={(e) => e.stopPropagation()}
@@ -99,11 +53,12 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
               display: "flex",
               alignItems: "center",
               cursor: isDragging ? "grabbing" : "grab",
-              userSelect: 'none'
+              userSelect: 'none',
+              whiteSpace: 'nowrap',
             }}
             onMouseDown={handleMouseDown}
           >
-            /contact
+            /about me
           </li>
 
           <li
@@ -155,87 +110,8 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
       {/* If minimized, only show the nav bar (the container is already set to the small height) */}
       {!isMinimized && (
         <>
-          {/* Loading overlay */}
-          {isLoading && (
-            <div style={loadingOverlayStyle}>
-              <div style={spinnerStyle}></div>
-              <p style={{ marginTop: '16px', color: '#333' }}>Sending message...</p>
-            </div>
-          )}
-
           <div style={{ padding: 12 }}>
 
-            <form onSubmit={handleSubmit}>
-              <div style={formRowStyle}>
-                <label style={{ fontFamily: "boldTitleFont" }}>Name:</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div style={formRowStyle}>
-                <label style={{ fontFamily: "boldTitleFont" }}>Email:</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div style={formRowStyle}>
-                <label style={{ fontFamily: "boldTitleFont" }}>Mobile:</label>
-                <input
-                  type="tel"
-                  name="mobile"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div style={formRowStyle}>
-                <label style={{ fontFamily: "boldTitleFont" }}>Subject:</label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div style={formRowStyle}>
-                <label style={{ fontFamily: "boldTitleFont" }}>Message:</label>
-                <textarea
-                  name="message"
-                  rows="3"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div style={{ float: 'right', marginTop: '-15px' }}>
-                <button type="submit" style={{   
-                  height: "60px",
-                  width: "auto",
-                  paddingLeft: "10px",
-                  paddingRight: "60px",
-                  backgroundImage: "url(/media/Contact_Send_Arrow.png)",
-                  backgroundPosition: "right center",
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "80px",
-                  cursor: "pointer",
-                  fontFamily: "boldTitleFont",
-                  border: "none",
-                  backgroundColor: "transparent",
-                }}>Send</button>
-              </div>
-            </form>
           </div>
         </>
       )}
