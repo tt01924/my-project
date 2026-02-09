@@ -69,10 +69,12 @@ function App() {
     position,
     size,
     isDragging,
+    isMinimized,
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
     handleResizeToggle,
+    handleMinimize,
   } = useDraggable({
     initialPosition: getRandomPosition(),
     initialSize: { width: 420, height: 420 },
@@ -114,6 +116,7 @@ function App() {
                 display: "flex",
                 alignItems: "center",
                 cursor: isDragging ? "grabbing" : "grab",
+                whiteSpace: 'nowrap',
               }}
               onMouseDown={handleMouseDown}
               >/home
@@ -126,6 +129,7 @@ function App() {
                 backgroundImage: "url(/media/Box_Minimise.png)",
                 cursor: "pointer",
               }}
+              onClick={handleMinimize}
             >
             </li>
 
@@ -156,6 +160,8 @@ function App() {
           <p style={{ backgroundColor: "black", height: "2px"}}></p>
         </nav>
 
+        {!isMinimized && (
+          <>
         <h1>todd <br /> taylor</h1>
         <h2 style={{ textAlign: "right", paddingRight: "5%" }}>
           <span style={{ color: "#282828" }}>S</span>oftware <span style={{ color: "#282828" }}>E</span>ngineer <br />
@@ -192,6 +198,8 @@ function App() {
             <Me3 aboutMeOpenPopup={setIsAboutMeOpen} />
           </Modal>
         )} */}
+                </>
+      )}
 
       </div>
 
