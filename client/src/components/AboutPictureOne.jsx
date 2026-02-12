@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../defaultBoxStyle/nav.css'
 import useDraggable from '../hooks/useDraggable';
 
-const About = ({ aboutMeOpenPopup, initialPosition }) => {
+const AboutPictureOne = ({ aboutPictureOneOpenPopup, initialPosition }) => {
 
   // Use the custom draggable hook
   const {
@@ -24,7 +24,7 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
 
   const handleClose = (e) => {
     e && e.stopPropagation();
-    aboutMeOpenPopup(false);
+    aboutPictureOneOpenPopup(false);
   };
 
   return (
@@ -171,4 +171,4 @@ const closeButtonStyle = {
   cursor: 'pointer'
 };
 
-export default About;
+export default AboutPictureOne;

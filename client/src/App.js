@@ -6,7 +6,7 @@ import Contact from './components/Contact';
 import About from './components/About';
 import AboutPictureOne from './components/AboutPictureOne';
 import AboutPictureTwo from './components/AboutPictureTwo';
-import AboutPictureThree from './components/AboutPictureThree';
+// import AboutPictureThree from './components/AboutPictureThree';
 
 import useDraggable from './hooks/useDraggable';
 
@@ -32,8 +32,8 @@ function App() {
   const [isAboutPictureTwoOpen, setIsAboutPictureTwoOpen] = useState(false);
   const [aboutPictureTwoPosition, setAboutPictureTwoPosition] = useState(null);
 
-  const [isAboutPictureThreeOpen, setIsAboutPictureThreeOpen] = useState(false);
-  const [aboutPictureThreePosition, setAboutPictureThreePosition] = useState(null);
+  // const [isAboutPictureThreeOpen, setIsAboutPictureThreeOpen] = useState(false);
+  // const [aboutPictureThreePosition, setAboutPictureThreePosition] = useState(null);
 
   const hasFetchedRef = useRef(false);
 
@@ -188,9 +188,13 @@ function App() {
 
         <button className="about" onClick={() => {
           if (!isAboutMeOpen) {
-            setAboutMePosition(getRandomPosition()) && setAboutPictureOnePosition(getRandomPosition()) && setAboutPictureTwoPosition(getRandomPosition()) && setAboutPictureThreePosition(getRandomPosition());
+            setAboutMePosition(getRandomPosition());
+            setAboutPictureOnePosition(getRandomPosition());
+            setAboutPictureTwoPosition(getRandomPosition());
           }
-          setIsAboutMeOpen(prev => !prev) && setIsAboutPictureOneOpen(prev => !prev) && setIsAboutPictureTwoOpen(prev => !prev) && setIsAboutPictureThreeOpen(prev => !prev);
+          setIsAboutMeOpen(prev => !prev); 
+          setIsAboutPictureOneOpen(prev => !prev); 
+          setIsAboutPictureTwoOpen(prev => !prev);
         }}>
           <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
         </button>
@@ -200,9 +204,9 @@ function App() {
       {/* Contact component moved outside homePage to prevent coupled dragging */}
       {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
       {isAboutMeOpen && <About initialPosition={aboutMePosition} aboutMeOpenPopup={setIsAboutMeOpen} />}
-      {isAboutMeOpen && <AboutPictureOne initialPosition={aboutPictureOnePosition} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} />}
-      {isAboutMeOpen && <AboutPictureTwo initialPosition={aboutPictureTwoPosition} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
-      {isAboutMeOpen && <AboutPictureThree initialPosition={aboutPictureThreePosition} aboutPictureThreeOpenPopup={setIsAboutPictureThreeOpen} />}
+      {isAboutPictureOneOpen && <AboutPictureOne initialPosition={aboutPictureOnePosition} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} />}
+      {isAboutPictureTwoOpen && <AboutPictureTwo initialPosition={aboutPictureTwoPosition} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
+      {/* {isAboutMeOpen && <AboutPictureThree initialPosition={aboutPictureThreePosition} aboutPictureThreeOpenPopup={setIsAboutPictureThreeOpen} />} */}
 
     </div>
   );
