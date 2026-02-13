@@ -60,7 +60,24 @@ header {
 }
 
 .flicker-effect {
+  position: relative;
+}
+
+.flicker-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--bg-image);
+  background-size: var(--bg-size);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f0f0f0;
   animation: backgroundFlicker 0.1s infinite;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Spinner animation for loading states */

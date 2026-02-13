@@ -58,7 +58,7 @@ const AboutPictureTwo = ({ aboutPictureTwoOpenPopup, initialPosition }) => {
             }}
             onMouseDown={handleMouseDown}
           >
-            /2
+            /1
           </li>
 
           <li
@@ -68,8 +68,8 @@ const AboutPictureTwo = ({ aboutPictureTwoOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_Minimise.png)",
               cursor: "pointer",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              marginLeft: 'auto'
             }}
             onClick={handleMinimize}
           >
@@ -96,8 +96,8 @@ const AboutPictureTwo = ({ aboutPictureTwoOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_Close.png)",
               cursor: "pointer",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              marginRight: "5%"
             }}
             onClick={handleClose}
           >
@@ -106,15 +106,18 @@ const AboutPictureTwo = ({ aboutPictureTwoOpenPopup, initialPosition }) => {
 
         <p style={{ backgroundColor: "black", height: "2px", margin: 0 }}></p>
       </nav>
-
-      {/* If minimized, only show the nav bar (the container is already set to the small height) */}
-      {!isMinimized && (
-        <>
-          <div style={{ padding: 12 }}>
-
-          </div>
-        </>
-      )}
+      <img 
+        src="/media/todd2.webp" 
+        alt="I" 
+        className='no-flicker' 
+        style={{ 
+          boxSizing: 'border-box',
+          padding: '5%',
+          width: '100%', 
+          maxHeight: 'calc(100% - 64px)',
+          objectFit: 'cover',
+        }} 
+      />
     </div>
   );
 };
@@ -129,46 +132,6 @@ const modalStyle = {
   overflow: "hidden",
   width: '300px',
   animation: 'dropTop 1.3s ease'
-};
-
-const loadingOverlayStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  zIndex: 10,
-};
-
-const spinnerStyle = {
-  width: '40px',
-  height: '40px',
-  border: '4px solid #ccc',
-  borderTop: '4px solid #333',
-  borderRadius: '50%',
-  animation: 'spin 1s linear infinite',
-};
-
-const formRowStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'flex-start',
-  marginBottom: '10px',
-};
-
-const closeButtonStyle = {
-  position: 'absolute',
-  top: 10,
-  right: 10,
-  background: 'transparent',
-  border: 'none',
-  fontSize: '16px',
-  cursor: 'pointer'
 };
 
 export default AboutPictureTwo;

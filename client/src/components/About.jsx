@@ -68,8 +68,8 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_Minimise.png)",
               cursor: "pointer",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              marginLeft: 'auto'
             }}
             onClick={handleMinimize}
           >
@@ -96,8 +96,8 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_Close.png)",
               cursor: "pointer",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              marginRight: "5%"
             }}
             onClick={handleClose}
           >
@@ -106,6 +106,7 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
 
         <p style={{ backgroundColor: "black", height: "2px", margin: 0 }}></p>
       </nav>
+      <p style={{ margin: 0, paddingTop: "5px", paddingLeft: "5%" }}>A day in a week in a year</p>
 
       {/* If minimized, only show the nav bar (the container is already set to the small height) */}
       {!isMinimized && (

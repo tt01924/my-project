@@ -68,8 +68,8 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_Minimise.png)",
               cursor: "pointer",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              marginLeft: 'auto'
             }}
             onClick={handleMinimize}
           >
@@ -96,8 +96,8 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_Close.png)",
               cursor: "pointer",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              marginRight: "5%",
             }}
             onClick={handleClose}
           >

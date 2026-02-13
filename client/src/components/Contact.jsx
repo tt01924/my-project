@@ -113,8 +113,8 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_Minimise.png)",
               cursor: "pointer",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              marginLeft: 'auto'
             }}
             onClick={handleMinimize}
           >
@@ -141,8 +141,8 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_Close.png)",
               cursor: "pointer",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              marginRight: "5%"
             }}
             onClick={handleClose}
           >
@@ -227,7 +227,6 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
                   paddingRight: "60px",
                   backgroundImage: "url(/media/Contact_Send_Arrow.png)",
                   backgroundPosition: "right center",
-                  backgroundRepeat: "no-repeat",
                   backgroundSize: "80px",
                   cursor: "pointer",
                   fontFamily: "boldTitleFont",

@@ -94,13 +94,10 @@ function App() {
   return (
     <div className="App flicker-effect" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}       
     style={{
-        backgroundImage: `url(${currentBackground})`,
-        backgroundSize: currentBackground.toLowerCase().endsWith('.png') ? "700px auto" : "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        '--bg-image': `url(${currentBackground})`,
+        '--bg-size': currentBackground.toLowerCase().endsWith('.png') ? "700px auto" : "cover",
         height: "100vh",
-        backgroundColor: "#f0f0f0",
-        willChange: "transform", // Hint to browser for optimization
+        willChange: "transform",
       }}>
       <header style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
         <div style={{ position: 'absolute', left: "2%" }}>No. <span id="visitor-count">...</span></div>
@@ -137,6 +134,7 @@ function App() {
                 width: "30px",
                 backgroundImage: "url(/media/Box_Minimise.png)",
                 cursor: "pointer",
+                marginLeft: "auto",
               }}
             >
             </li>
@@ -160,6 +158,7 @@ function App() {
                 width: "30px",
                 backgroundImage: "url(/media/Box_Close.png)",
                 cursor: "pointer",
+                marginRight: "5%",
               }}
             >
             </li>
