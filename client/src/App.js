@@ -204,6 +204,9 @@ function App() {
           <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
         </button>
 
+          </>
+        )}
+
       </div>
 
       {/* Contact component moved outside homePage to prevent coupled dragging */}
