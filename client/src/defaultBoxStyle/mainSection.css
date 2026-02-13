@@ -35,10 +35,15 @@ button img {
   height: auto;
 }
 
-
 button.contact {
   position: absolute;
   right: 15%;
+  top: 85px;
+}
+
+button.about {
+  position: absolute;
+  right: 35%;
   top: 85px;
 }
 

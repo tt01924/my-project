@@ -3,11 +3,12 @@ import './defaultBoxStyle/nav.css';
 import './defaultBoxStyle/mainSection.css';
 import { useState, useEffect, useRef } from 'react';
 import Contact from './components/Contact';
+import About from './components/About';
+import AboutPictureOne from './components/AboutPictureOne';
+import AboutPictureTwo from './components/AboutPictureTwo';
+// import AboutPictureThree from './components/AboutPictureThree';
+
 import useDraggable from './hooks/useDraggable';
-// import AboutMe from './components/AboutMe';
-// import Modal from './components/Modal/index';
-// import Me1 from './components/Me1';
-// import Me3 from './components/Me3';
 
 const backgrounds = [
   "/media/background/background1.png",
@@ -21,7 +22,18 @@ function App() {
 
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [contactPosition, setContactPosition] = useState(null);
-  // const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+
+  const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+  const [aboutMePosition, setAboutMePosition] = useState(null);
+
+  const [isAboutPictureOneOpen, setIsAboutPictureOneOpen] = useState(false);
+  const [aboutPictureOnePosition, setAboutPictureOnePosition] = useState(null);
+
+  const [isAboutPictureTwoOpen, setIsAboutPictureTwoOpen] = useState(false);
+  const [aboutPictureTwoPosition, setAboutPictureTwoPosition] = useState(null);
+
+  // const [isAboutPictureThreeOpen, setIsAboutPictureThreeOpen] = useState(false);
+  // const [aboutPictureThreePosition, setAboutPictureThreePosition] = useState(null);
 
   const hasFetchedRef = useRef(false);
 
@@ -84,13 +96,10 @@ function App() {
   return (
     <div className="App flicker-effect" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}       
     style={{
-        backgroundImage: `url(${currentBackground})`,
-        backgroundSize: currentBackground.toLowerCase().endsWith('.png') ? "700px auto" : "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        '--bg-image': `url(${currentBackground})`,
+        '--bg-size': currentBackground.toLowerCase().endsWith('.png') ? "700px auto" : "cover",
         height: "100vh",
-        backgroundColor: "#f0f0f0",
-        willChange: "transform", // Hint to browser for optimization
+        willChange: "transform",
       }}>
       <header style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
         <div style={{ position: 'absolute', left: "2%" }}>No. <span id="visitor-count">...</span></div>
@@ -128,6 +137,7 @@ function App() {
                 width: "30px",
                 backgroundImage: "url(/media/Box_Minimise.png)",
                 cursor: "pointer",
+                marginLeft: "auto",
               }}
               onClick={handleMinimize}
             >
@@ -152,6 +162,7 @@ function App() {
                 width: "30px",
                 backgroundImage: "url(/media/Box_Close.png)",
                 cursor: "pointer",
+                marginRight: "5%",
               }}
             >
             </li>
@@ -171,12 +182,6 @@ function App() {
 
         {/* Section buttons GO HERE*/}
 
-        {/* <button className="about" 
-          onClick={() => setIsAboutMeOpen(prev => !prev)}>
-          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
-        </button>
-        */}
-
         <button className="contact" onClick={() => {
           if (!isContactOpen) {
             setContactPosition(getRandomPosition());
@@ -184,34 +189,29 @@ function App() {
           setIsContactOpen(prev => !prev);
         }}>
           <img src={isContactOpen ? "/media/Contact_4.png" : "/media/Contact_2.png"} alt="Contact" />
-        </button> 
+        </button>
 
-        {/* {isAboutMeOpen && (
-          <Modal isOpen={isAboutMeOpen} onClose={() => {
-            setIsAboutMeOpen(false);
-            // setMe([]);
-            }}
-          >
-            <AboutMe aboutMeOpenPopup={setIsAboutMeOpen} />
-            
-            <Me1 aboutMeOpenPopup={setIsAboutMeOpen} />
-            <Me3 aboutMeOpenPopup={setIsAboutMeOpen} />
-          </Modal>
-        )} */}
-                </>
-      )}
+        <button className="about" onClick={() => {
+          if (!isAboutMeOpen) {
+            setAboutMePosition(getRandomPosition());
+            setAboutPictureOnePosition(getRandomPosition());
+            setAboutPictureTwoPosition(getRandomPosition());
+          }
+          setIsAboutMeOpen(prev => !prev); 
+          setIsAboutPictureOneOpen(prev => !prev); 
+          setIsAboutPictureTwoOpen(prev => !prev);
+        }}>
+          <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
+        </button>
 
       </div>
 
       {/* Contact component moved outside homePage to prevent coupled dragging */}
       {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
-
-      {/* {isAboutMeOpen && (
-        <>
-          <Me1 {...getRandomPosition()} />
-          <Me3 {...getRandomPosition()} />
-        </>
-      )} */}
+      {isAboutMeOpen && <About initialPosition={aboutMePosition} aboutMeOpenPopup={setIsAboutMeOpen} />}
+      {isAboutPictureOneOpen && <AboutPictureOne initialPosition={aboutPictureOnePosition} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} />}
+      {isAboutPictureTwoOpen && <AboutPictureTwo initialPosition={aboutPictureTwoPosition} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
+      {/* {isAboutMeOpen && <AboutPictureThree initialPosition={aboutPictureThreePosition} aboutPictureThreeOpenPopup={setIsAboutPictureThreeOpen} />} */}
 
     </div>
   );
