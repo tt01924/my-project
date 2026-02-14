@@ -42,9 +42,12 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
         cursor: isDragging ? "grabbing" : "default",
         backgroundColor: '#f0f0f0',
         border: "2px solid black",
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
       }}
     >
-      <nav>
+      <nav style={{ flexShrink: 0 }}>
         <ul className='site-nav'>
           <li className='pageName'
             style={{
@@ -106,16 +109,32 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
 
         <p style={{ backgroundColor: "black", height: "2px", margin: 0 }}></p>
       </nav>
-      <p style={{ margin: 0, paddingTop: "5px", paddingLeft: "5%" }}>A day in a week in a year</p>
-
-      {/* If minimized, only show the nav bar (the container is already set to the small height) */}
-      {!isMinimized && (
-        <>
-          <div style={{ padding: 12 }}>
-
-          </div>
-        </>
-      )}
+      <div style={{ 
+        backgroundColor: '#ffffff',
+        boxSizing: 'border-box',
+        padding: '2%',
+        // width: '95%', 
+        objectFit: 'cover',
+        flex: 1, 
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        border: "2px solid black",
+        alignSelf: 'center',
+        marginTop: "5%",
+        marginBottom: "5%",
+        marginLeft: "5%",
+        marginRight: "5%",
+      }}>
+        <h3 style={{ margin: 0, paddingTop: "10px", paddingLeft: "5%", paddingRight: "5%", color: "#0000ff" }}> I/eye </h3>
+        <p style={{ margin: 0, paddingLeft: "5%", paddingRight: "5%" }}> ----------- </p>
+        <p style={{ margin: 0, paddingTop: "10px", paddingLeft: "5%", paddingRight: "5%" }}> &gt; My mind refocused to my eyes, mounted like jewels in their cranial septre staring at the reflection in the window. It held no life of its own, yet when I moved, it moved. A snarl, a smoulder, a wink; each were shown back in retaliation. </p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%" }}> &gt; The face looking back at me was crumbling in the echo, that much was obvious without the jaunts. Deep trenches lined the forehead, preparing for battle amongst the forest of eyebrows that held secrets of wiggling and raising on command. As the eyebrows wrapped around the sunken socket, so too did the trenches, encircling the bushy enclave that rested on the head. They wrapped around the eyes which sank below, in alliance with the eyebrows. The eyes, beset with lids that would lower on command, glossed with a clear white surface before a ken-speckled brown and green circled the satin black centre. </p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%" }}>&gt; He liked his eyes. They shone in the sunshine. </p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%" }}>&gt; He liked the creases wrapped around his face too, it promised he smiled often. </p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%" }}>&gt; A face that blossomed amongst the mop of hair, nudged by a pair of heaving shoulders that rested on each side of him.</p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%", paddingBottom: "15px" }}>&gt; A nose curved between the nape of his eyes, jutting outward until it dived towards a messy moustache of impressive proportions. Feathering outwards, the grizzled hair touched upon flushed cheeks which ran under an ever-growing beard to connect with a pair of mottled ears. With rhythm comes rhymes and the face staring back at me began to pucker into a smile that felt so familiar. Yes, I liked this chamber, for all its failing parts, it remained steadfast and quick witted amongst the forever continuous integration and development of the program.</p>
+        <p style={{ margin: 0, paddingTop: "5px", paddingLeft: "5%", paddingRight: "5%" }}> ----------- </p>
+      </div>
     </div>
   );
 };
@@ -127,7 +146,7 @@ const overlayStyle = {
 
 const modalStyle = {
   background: 'white',
-  overflow: "hidden",
+  overflow: "scroll",
   width: '300px',
   animation: 'dropTop 1.3s ease'
 };
