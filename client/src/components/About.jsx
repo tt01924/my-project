@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../defaultBoxStyle/nav.css'
 import useDraggable from '../hooks/useDraggable';
 
-const About = ({ aboutMeOpenPopup, initialPosition }) => {
+const About = ({ aboutMeOpenPopup, aboutPictureOneOpenPopup, aboutPictureTwoOpenPopup, initialPosition }) => {
 
   // Use the custom draggable hook
   const {
@@ -25,6 +25,9 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
   const handleClose = (e) => {
     e && e.stopPropagation();
     aboutMeOpenPopup(false);
+    aboutPictureOneOpenPopup(false);
+    aboutPictureTwoOpenPopup(false);
+
   };
 
   return (
@@ -45,6 +48,7 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
+        zIndex: 10,
       }}
     >
       <nav style={{ flexShrink: 0 }}>
@@ -126,14 +130,14 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
         marginRight: "5%",
       }}>
         <h3 style={{ margin: 0, paddingTop: "10px", paddingLeft: "5%", paddingRight: "5%", color: "#0000ff" }}> I/eye </h3>
-        <p style={{ margin: 0, paddingLeft: "5%", paddingRight: "5%" }}> ----------- </p>
-        <p style={{ margin: 0, paddingTop: "10px", paddingLeft: "5%", paddingRight: "5%" }}> &gt; My mind refocused to my eyes, mounted like jewels in their cranial septre staring at the reflection in the window. It held no life of its own, yet when I moved, it moved. A snarl, a smoulder, a wink; each were shown back in retaliation. </p>
-        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%" }}> &gt; The face looking back at me was crumbling in the echo, that much was obvious without the jaunts. Deep trenches lined the forehead, preparing for battle amongst the forest of eyebrows that held secrets of wiggling and raising on command. As the eyebrows wrapped around the sunken socket, so too did the trenches, encircling the bushy enclave that rested on the head. They wrapped around the eyes which sank below, in alliance with the eyebrows. The eyes, beset with lids that would lower on command, glossed with a clear white surface before a ken-speckled brown and green circled the satin black centre. </p>
-        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%" }}>&gt; He liked his eyes. They shone in the sunshine. </p>
-        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%" }}>&gt; He liked the creases wrapped around his face too, it promised he smiled often. </p>
-        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%" }}>&gt; A face that blossomed amongst the mop of hair, nudged by a pair of heaving shoulders that rested on each side of him.</p>
-        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%", paddingBottom: "15px" }}>&gt; A nose curved between the nape of his eyes, jutting outward until it dived towards a messy moustache of impressive proportions. Feathering outwards, the grizzled hair touched upon flushed cheeks which ran under an ever-growing beard to connect with a pair of mottled ears. With rhythm comes rhymes and the face staring back at me began to pucker into a smile that felt so familiar. Yes, I liked this chamber, for all its failing parts, it remained steadfast and quick witted amongst the forever continuous integration and development of the program.</p>
-        <p style={{ margin: 0, paddingTop: "5px", paddingLeft: "5%", paddingRight: "5%" }}> ----------- </p>
+        <p style={{ margin: 0, paddingLeft: "5%", paddingRight: "5%", color: "#969696" }}> ----------- </p>
+        <p style={{ margin: 0, paddingTop: "10px", paddingLeft: "5%", paddingRight: "5%", color: "#969696" }}> &gt; My mind refocused to my eyes, mounted like jewels in their cranial septre staring at the reflection in the window. It held no life of its own, yet when I moved, it moved. A snarl, a smoulder, a wink; each were shown back in retaliation. </p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%", color: "#969696" }}> &gt; The face looking back at me was crumbling in the echo, that much was obvious without the jaunts. Deep trenches lined the forehead, preparing for battle amongst the forest of eyebrows that held secrets of wiggling and raising on command. As the eyebrows wrapped around the sunken socket, so too did the trenches, encircling the bushy enclave that rested on the head. They wrapped around the eyes which sank below, in alliance with the eyebrows. The eyes, beset with lids that would lower on command, glossed with a clear white surface before a ken-speckled brown and green circled the satin black centre. </p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%", color: "#969696" }}>&gt; He liked his eyes. They shone in the sunshine. </p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%", color: "#969696" }}>&gt; He liked the creases wrapped around his face too, it promised he smiled often. </p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%", color: "#969696" }}>&gt; A face that blossomed amongst the mop of hair, nudged by a pair of heaving shoulders that rested on each side of him.</p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%", color: "#969696" }}>&gt; A nose curved between the nape of his eyes, jutting outward until it dived towards a messy moustache of impressive proportions. Feathering outwards, the grizzled hair touched upon flushed cheeks which ran under an ever-growing beard to connect with a pair of mottled ears. With rhythm comes rhymes and the face staring back at me began to pucker into a smile that felt so familiar. Yes, I liked this chamber, for all its failing parts, it remained steadfast and quick witted amongst the forever continuous integration and development of the program.</p>
+        <p style={{ margin: 0, paddingTop: "15px", paddingLeft: "5%", paddingRight: "5%", paddingBottom: "15px", color: "#969696" }}> ----------- </p>
       </div>
     </div>
   );
