@@ -211,7 +211,7 @@ function App() {
 
       {/* Contact component moved outside homePage to prevent coupled dragging */}
       {isContactOpen && <Contact initialPosition={contactPosition} contactOpenPopup={setIsContactOpen} />}
-      {isAboutMeOpen && <About initialPosition={aboutMePosition} aboutMeOpenPopup={setIsAboutMeOpen} />}
+      {isAboutMeOpen && <About initialPosition={aboutMePosition} aboutMeOpenPopup={setIsAboutMeOpen} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
       {isAboutPictureOneOpen && <AboutPictureOne initialPosition={aboutPictureOnePosition} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} />}
       {isAboutPictureTwoOpen && <AboutPictureTwo initialPosition={aboutPictureTwoPosition} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
       {/* {isAboutMeOpen && <AboutPictureThree initialPosition={aboutPictureThreePosition} aboutPictureThreeOpenPopup={setIsAboutPictureThreeOpen} />} */}

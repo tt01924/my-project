@@ -88,6 +88,7 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
         cursor: isDragging ? "grabbing" : "default",
         backgroundColor: '#f0f0f0',
         border: "2px solid black",
+        zIndex: 99,
       }}
     >
       <nav>
@@ -159,7 +160,7 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
           {isLoading && (
             <div style={loadingOverlayStyle}>
               <div style={spinnerStyle}></div>
-              <p style={{ marginTop: '16px', color: '#333' }}>Sending message...</p>
+              <p style={{ marginTop: '16px', color: '#333' }}>Sending...</p>
             </div>
           )}
 
@@ -275,6 +276,7 @@ const spinnerStyle = {
   borderTop: '4px solid #333',
   borderRadius: '50%',
   animation: 'spin 1s linear infinite',
+  zIndex: 100
 };
 
 const formRowStyle = {
