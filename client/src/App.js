@@ -1,7 +1,7 @@
 import './App.css';
 import './defaultBoxStyle/nav.css';
 import './defaultBoxStyle/mainSection.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, use } from 'react';
 import Contact from './components/Contact';
 import About from './components/About';
 import AboutPictureOne from './components/AboutPictureOne';
@@ -35,8 +35,7 @@ function App() {
   const [isTextFlutterOpen, setIsTextFlutterOpen] = useState(false);
   const [textFlutterPosition, setTextFlutterPosition] = useState(null);
 
-  // const [isAboutPictureThreeOpen, setIsAboutPictureThreeOpen] = useState(false);
-  // const [aboutPictureThreePosition, setAboutPictureThreePosition] = useState(null);
+  const [time, setTime] = useState(new Date());
 
   const hasFetchedRef = useRef(false);
 
@@ -53,6 +52,14 @@ function App() {
     }
 
     fetchVisitorCount().catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    
+    return () => clearInterval(timer);
   }, []);
   
   // Sequential background cycle
@@ -104,9 +111,25 @@ function App() {
         height: "100vh",
         willChange: "transform",
       }}>
-      <header style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+      <header style={{ display: 'flex', alignItems: 'center', position: 'relative', height: '40px' }}>
         <div style={{ position: 'absolute', left: "2%" }}>No. <span id="visitor-count">...</span></div>
         <div style={{ textAlign: "center", width: '100%' }}>TODDTAYLOR.SOLUTIONS</div>
+        <div style={{ 
+          textAlign: "center", 
+          borderRight: '2px solid black', 
+          borderLeft: '2px solid black', 
+          marginRight: '20px', 
+          backgroundColor: '#0000ff', 
+          color: '#f0f0f0',
+          height: '38px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '0 10px',
+          minWidth: '100px',
+          fontVariantNumeric: 'tabular-nums'
+        }}>{time.toLocaleTimeString()}</div>
+        <div style={{ textAlign: "center", paddingRight: '20px' }}>{time.toLocaleDateString()}</div>
       </header>
 
       <div
