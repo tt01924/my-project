@@ -47,9 +47,15 @@ button.about {
   top: 85px;
 }
 
-button.textFlutter {
+button.priorWork {
   position: absolute;
   right: 30%;
+  top: 160px;
+}
+
+button.textFlutter {
+  position: absolute;
+  right: 10%;
   top: 160px;
 }
 
