@@ -6,7 +6,7 @@ import Contact from './components/Contact';
 import About from './components/About';
 import AboutPictureOne from './components/AboutPictureOne';
 import AboutPictureTwo from './components/AboutPictureTwo';
-// import AboutPictureThree from './components/AboutPictureThree';
+import TextFlutter from './components/TextFlutter';
 
 import useDraggable from './hooks/useDraggable';
 
@@ -31,6 +31,9 @@ function App() {
 
   const [isAboutPictureTwoOpen, setIsAboutPictureTwoOpen] = useState(false);
   const [aboutPictureTwoPosition, setAboutPictureTwoPosition] = useState(null);
+
+  const [isTextFlutterOpen, setIsTextFlutterOpen] = useState(false);
+  const [textFlutterPosition, setTextFlutterPosition] = useState(null);
 
   // const [isAboutPictureThreeOpen, setIsAboutPictureThreeOpen] = useState(false);
   // const [aboutPictureThreePosition, setAboutPictureThreePosition] = useState(null);
@@ -204,6 +207,15 @@ function App() {
           <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
         </button>
 
+        <button className="textFlutter" onClick={() => {
+          if (!isTextFlutterOpen) {
+            setTextFlutterPosition(getRandomPosition());
+          }
+          setIsTextFlutterOpen(prev => !prev);
+        }}>
+          <img src={isTextFlutterOpen ? "/media/OpenedFolder.png" : "/media/UnopenedFolder.png"} alt="TextFlutter" /> 
+        </button>
+
           </>
         )}
 
@@ -214,7 +226,7 @@ function App() {
       {isAboutMeOpen && <About initialPosition={aboutMePosition} aboutMeOpenPopup={setIsAboutMeOpen} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
       {isAboutPictureOneOpen && <AboutPictureOne initialPosition={aboutPictureOnePosition} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} />}
       {isAboutPictureTwoOpen && <AboutPictureTwo initialPosition={aboutPictureTwoPosition} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
-      {/* {isAboutMeOpen && <AboutPictureThree initialPosition={aboutPictureThreePosition} aboutPictureThreeOpenPopup={setIsAboutPictureThreeOpen} />} */}
+      {isTextFlutterOpen && <TextFlutter initialPosition={textFlutterPosition} textFlutterOpenPopup={setIsTextFlutterOpen} />}
 
     </div>
   );

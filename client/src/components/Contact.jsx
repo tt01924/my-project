@@ -17,7 +17,7 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
     handleMinimize,
   } = useDraggable({
     initialPosition: initialPosition || { x: 100, y: 100 },
-    initialSize: { width: 350, height: 350 },
+    initialSize: { width: 350, height: 310 },
     minWidth: 200,
     minHeight: 200,
   });

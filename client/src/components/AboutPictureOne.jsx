@@ -17,7 +17,7 @@ const AboutPictureOne = ({ aboutPictureOneOpenPopup, initialPosition }) => {
     handleMinimize,
   } = useDraggable({
     initialPosition: initialPosition || { x: 100, y: 100 },
-    initialSize: { width: 350, height: 350 },
+    initialSize: { width: 270, height: 270 },
     minWidth: 200,
     minHeight: 200,
   });
@@ -83,6 +83,7 @@ const AboutPictureOne = ({ aboutPictureOneOpenPopup, initialPosition }) => {
               width: "30px",
               backgroundImage: "url(/media/Box_FIll.png)",
               cursor: "se-resize",
+              backgroundPosition: 'center',
             }}
             onMouseDown={handleResizeToggle}
           >
