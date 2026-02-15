@@ -37,14 +37,20 @@ button img {
 
 button.contact {
   position: absolute;
-  right: 15%;
+  right: 10%;
   top: 85px;
 }
 
 button.about {
   position: absolute;
-  right: 35%;
+  right: 30%;
   top: 85px;
+}
+
+button.textFlutter {
+  position: absolute;
+  right: 30%;
+  top: 160px;
 }
 
 

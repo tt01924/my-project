@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../defaultBoxStyle/nav.css'
 import useDraggable from '../hooks/useDraggable';
+import '../defaultBoxStyle/mainSection.css';
 
-const About = ({ aboutMeOpenPopup, initialPosition }) => {
+const TextFlutter = ({ textFlutterOpenPopup, initialPosition }) => {
 
   // Use the custom draggable hook
   const {
@@ -17,15 +18,25 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
     handleMinimize,
   } = useDraggable({
     initialPosition: initialPosition || { x: 100, y: 100 },
-    initialSize: { width: 350, height: 350 },
+    initialSize: { width: 300, height: 220 },
     minWidth: 200,
     minHeight: 200,
   });
 
   const handleClose = (e) => {
     e && e.stopPropagation();
-    aboutMeOpenPopup(false);
-  };
+    textFlutterOpenPopup(false);
+  }
+  const [isInverted, setIsInverted] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsInverted(prev => !prev);
+    }, 500); // Toggle every 0.5 seconds
+
+    return () => clearInterval(interval);
+
+  }, []);
 
   return (
     <div
@@ -42,9 +53,13 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
         cursor: isDragging ? "grabbing" : "default",
         backgroundColor: '#f0f0f0',
         border: "2px solid black",
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        zIndex: 10,
       }}
     >
-      <nav>
+      <nav style={{ flexShrink: 0 }}>
         <ul className='site-nav'>
           <li className='pageName'
             style={{
@@ -58,7 +73,7 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
             }}
             onMouseDown={handleMouseDown}
           >
-            /3
+            /&gt;
           </li>
 
           <li
@@ -97,7 +112,7 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
               backgroundImage: "url(/media/Box_Close.png)",
               cursor: "pointer",
               backgroundPosition: 'center',
-              marginRight: "5%",
+              marginRight: "5%"
             }}
             onClick={handleClose}
           >
@@ -106,69 +121,31 @@ const About = ({ aboutMeOpenPopup, initialPosition }) => {
 
         <p style={{ backgroundColor: "black", height: "2px", margin: 0 }}></p>
       </nav>
-
-      {/* If minimized, only show the nav bar (the container is already set to the small height) */}
-      {!isMinimized && (
-        <>
-          <div style={{ padding: 12 }}>
-
-          </div>
-        </>
-      )}
+      <div style={{ 
+        backgroundColor: isInverted ? '#ffff00' : '#0000ff',
+        boxSizing: 'border-box',
+        padding: '2%',
+        width: '90%', 
+        objectFit: 'cover',
+        flex: 1, 
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        border: "2px solid black",
+        alignSelf: 'center',
+        marginTop: "5%",
+        marginBottom: "5%",
+      }}>
+        <h2 style={{ margin: 0, marginTop: "50px", paddingLeft: "2%", color: isInverted ? "#000000" : "#ffffff", fontFamily: "pTagFont", fontSize: "40px" }}>patience</h2>
+      </div>
     </div>
   );
 };
 
-const overlayStyle = {
-  position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
-};
-
 const modalStyle = {
   background: 'white',
-  overflow: "hidden",
+  overflow: "scroll",
   width: '300px',
   animation: 'dropTop 1.3s ease'
 };
 
-const loadingOverlayStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  zIndex: 10,
-};
-
-const spinnerStyle = {
-  width: '40px',
-  height: '40px',
-  border: '4px solid #ccc',
-  borderTop: '4px solid #333',
-  borderRadius: '50%',
-  animation: 'spin 1s linear infinite',
-};
-
-const formRowStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'flex-start',
-  marginBottom: '10px',
-};
-
-const closeButtonStyle = {
-  position: 'absolute',
-  top: 10,
-  right: 10,
-  background: 'transparent',
-  border: 'none',
-  fontSize: '16px',
-  cursor: 'pointer'
-};
-
-export default About;
+export default TextFlutter;
