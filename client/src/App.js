@@ -187,7 +187,8 @@ function App() {
 
             {/* Close button */}
             <li
-              style={{    
+              style={{  
+                title: "Unavailable - Resize",
                 height: "30px",
                 width: "30px",
                 backgroundImage: "url(/media/Box_Close.png)",

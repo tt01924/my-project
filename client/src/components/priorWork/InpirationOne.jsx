@@ -17,7 +17,7 @@ const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
     handleMinimize,
   } = useDraggable({
     initialPosition: initialPosition || { x: 100, y: 100 },
-    initialSize: { width: 330, height: 330 },
+    initialSize: { width: 270, height: 330 },
     minWidth: 200,
     minHeight: 200,
   });
@@ -114,12 +114,22 @@ const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
         className='no-flicker' 
         style={{ 
           boxSizing: 'border-box',
-          padding: '5%',
-          width: '100%', 
-          maxHeight: 'calc(100% - 64px)',
+          marginRight: '5%',
+          marginLeft: '5%',
+          marginTop: '5%',
+          height: 'calc(100% - 64px - 7% - 30px)',
+          width: '90%', 
           objectFit: 'cover',
+          border: '2px solid black',
         }} 
       />
+      <div style={{
+        height: '20px', 
+        width: '90%', 
+        marginLeft: '5%',
+        backgroundColor: '#ffffff',
+        border: '2px solid black'
+      }}></div>
     </div>
   );
 };
