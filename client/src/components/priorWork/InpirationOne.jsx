@@ -3,6 +3,8 @@ import '../../defaultBoxStyle/nav.css'
 import useDraggable from '../../hooks/useDraggable';
 
 const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [text, setText] = useState('');
 
   // Use the custom draggable hook
   const {
@@ -27,6 +29,11 @@ const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
     inspirationOneOpenPopup(false);
   };
 
+  const handleDivClick = (e) => {
+    e.stopPropagation();
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div
       onClick={(e) => e.stopPropagation()}
@@ -38,7 +45,7 @@ const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
         top: position.y,
         left: position.x,
         width: size.width,
-        height: size.height,
+        height: isExpanded ? size.height + 80 : size.height,
         cursor: isDragging ? "grabbing" : "default",
         backgroundColor: '#f0f0f0',
         border: "2px solid black",
@@ -117,26 +124,27 @@ const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
           marginRight: '5%',
           marginLeft: '5%',
           marginTop: '5%',
-          height: 'calc(100% - 64px - 7% - 30px)',
+          height: `calc(${size.height}px - 94px - 30px)`,
           width: '90%', 
           objectFit: 'cover',
           border: '2px solid black',
         }} 
       />
-      <div style={{
-        height: '20px', 
-        width: '90%', 
-        marginLeft: '5%',
-        backgroundColor: '#ffffff',
-        border: '2px solid black'
-      }}></div>
+      <div 
+        style={{
+          height: isExpanded ? '100px' : '20px', 
+          width: '90%', 
+          marginLeft: '5%',
+          backgroundColor: '#ffffff',
+          border: '2px solid black',
+          cursor: 'pointer',
+          boxSizing: 'border-box'
+        }}
+        onClick={handleDivClick}
+      >
+      </div>
     </div>
   );
-};
-
-const overlayStyle = {
-  position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
 };
 
 const modalStyle = {
