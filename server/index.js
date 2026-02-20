@@ -18,10 +18,6 @@ app.use(cors({
 app.use(express.json()); //For parsing JSON POST bodies
 
 // Routes
-app.use('/education', require('./routes/education'));
-app.use('/cv', require('./routes/cv'));
-app.use('/work', require('./routes/work'));
-app.use('/contact', require('./routes/contact'));
 app.use('/images', express.static('images'));
 
   app.get('/', (req, res) => {
