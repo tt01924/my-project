@@ -17,6 +17,9 @@ const useDraggable = (options = {}) => {
     minHeight = 200,
   } = options;
 
+  // Check if mobile
+  const isMobile = () => window.innerWidth <= 600;
+
   // Calculate default center position
   const getDefaultPosition = () => {
     const boxWidth = initialSize.width;
@@ -26,8 +29,29 @@ const useDraggable = (options = {}) => {
     return { x: centerX, y: centerY };
   };
 
-  const [position, setPosition] = useState(initialPosition || getDefaultPosition);
-  const [size, setSize] = useState(initialSize);
+  // Get centered position for mobile
+  const getCenteredPosition = () => {
+    return { x: 0, y: 0 }; // CSS will handle centering on mobile
+  };
+
+  const [position, setPosition] = useState(() => {
+    if (isMobile()) {
+      return getCenteredPosition();
+    }
+    return initialPosition || getDefaultPosition();
+  });
+  
+  const [size, setSize] = useState(() => {
+    if (isMobile()) {
+      // Use smaller size on mobile
+      return { 
+        width: Math.min(initialSize.width, window.innerWidth * 0.9), 
+        height: Math.min(initialSize.height, window.innerHeight * 0.8) 
+      };
+    }
+    return initialSize;
+  });
+
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [startPosition, setStartPosition] = useState({ mouseX: 0, mouseY: 0 });
@@ -37,8 +61,9 @@ const useDraggable = (options = {}) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isResized, setIsResized] = useState(false);
 
-  // Start dragging
+  // Start dragging (disabled on mobile)
   const handleMouseDown = (e) => {
+    if (isMobile()) return; // Disable dragging on mobile
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
@@ -48,16 +73,18 @@ const useDraggable = (options = {}) => {
     });
   };
 
-  // Start resizing (continuous drag resize)
+  // Start resizing (continuous drag resize, disabled on mobile)
   const handleResizeMouseDown = (e) => {
+    if (isMobile()) return; // Disable resizing on mobile
     e.preventDefault();
     e.stopPropagation();
     setIsResizing(true);
     setPrevSize(size);
   };
 
-  // Toggle resize (click to expand/shrink)
+  // Toggle resize (click to expand/shrink, disabled on mobile)
   const handleResizeToggle = (e, expandAmount = 100) => {
+    if (isMobile()) return; // Disable resize toggle on mobile
     e.stopPropagation();
     
     setSize(prev => {
@@ -99,6 +126,7 @@ const useDraggable = (options = {}) => {
 
   // Minimize/restore
   const handleMinimize = (e, minimizedHeight = 65) => {
+    if (isMobile()) return; // Disable minimize on mobile
     e.preventDefault();
     e.stopPropagation();
     if (!isMinimized) {
@@ -132,6 +160,7 @@ const useDraggable = (options = {}) => {
     isResizing,
     isMinimized,
     isResized,
+    isMobile: isMobile(),
     
     // Setters (for manual control if needed)
     setPosition,
