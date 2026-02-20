@@ -23,17 +23,21 @@ header {
 }
 
 @media (max-width: 600px) {
-  /* .homePage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: auto !important;
-    height: auto !important;
-    margin: auto;
-    cursor: default;
-  } */
+  header {
+    font-size: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  
+  header > div:first-child {
+    display: none; /* Hide visitor count on mobile */
+  }
+  
+  header > div:nth-child(3) {
+    min-width: 70px;
+    padding: 0 5px;
+    font-size: 10px;
+  }
 }
 
 @font-face {
