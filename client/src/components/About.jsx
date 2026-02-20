@@ -144,56 +144,11 @@ const About = ({ aboutMeOpenPopup, aboutPictureOneOpenPopup, aboutPictureTwoOpen
   );
 };
 
-const overlayStyle = {
-  position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
-};
-
 const modalStyle = {
   background: 'white',
   overflow: "scroll",
   width: '300px',
   animation: 'dropTop 1.3s ease'
-};
-
-const loadingOverlayStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  zIndex: 10,
-};
-
-const spinnerStyle = {
-  width: '40px',
-  height: '40px',
-  border: '4px solid #ccc',
-  borderTop: '4px solid #333',
-  borderRadius: '50%',
-  animation: 'spin 1s linear infinite',
-};
-
-const formRowStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'flex-start',
-  marginBottom: '10px',
-};
-
-const closeButtonStyle = {
-  position: 'absolute',
-  top: 10,
-  right: 10,
-  background: 'transparent',
-  border: 'none',
-  fontSize: '16px',
-  cursor: 'pointer'
 };
 
 export default About;

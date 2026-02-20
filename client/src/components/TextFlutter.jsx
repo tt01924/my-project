@@ -135,7 +135,7 @@ const TextFlutter = ({ textFlutterOpenPopup, initialPosition }) => {
         marginTop: "5%",
         marginBottom: "5%",
       }}>
-        <h2 style={{ margin: 0, marginTop: "50px", paddingLeft: "2%", color: isInverted ? "#000000" : "#ffffff", fontFamily: "pTagFont", fontSize: "40px" }}>patience</h2>
+        <h2 style={{ margin: 0, marginTop: "50px", paddingLeft: "2%", color: isInverted ? "#000000" : "#ffffff", fontFamily: "pTagFont", fontSize: "40px" }}>patience_</h2>
       </div>
     </div>
   );

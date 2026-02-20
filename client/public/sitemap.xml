@@ -4,7 +4,8 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://toddtaylor.solutions</loc>
+        <loc>https://toddtaylor.solutions</loc> 
+        <!-- Change to wessvex.solutions -->
         <lastmod>2025-07-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>

@@ -6,6 +6,7 @@ import Contact from './components/Contact';
 import About from './components/About';
 import AboutPictureOne from './components/AboutPictureOne';
 import AboutPictureTwo from './components/AboutPictureTwo';
+import PriorWork from './components/PriorWork';
 import TextFlutter from './components/TextFlutter';
 
 import useDraggable from './hooks/useDraggable';
@@ -31,6 +32,9 @@ function App() {
 
   const [isAboutPictureTwoOpen, setIsAboutPictureTwoOpen] = useState(false);
   const [aboutPictureTwoPosition, setAboutPictureTwoPosition] = useState(null);
+
+  const [isPriorWorkOpen, setIsPriorWorkOpen] = useState(false);
+  const [priorWorkPosition, setPriorWorkPosition] = useState(null);
 
   const [isTextFlutterOpen, setIsTextFlutterOpen] = useState(false);
   const [textFlutterPosition, setTextFlutterPosition] = useState(null);
@@ -113,7 +117,12 @@ function App() {
       }}>
       <header style={{ display: 'flex', alignItems: 'center', position: 'relative', height: '40px' }}>
         <div style={{ position: 'absolute', left: "2%" }}>No. <span id="visitor-count">...</span></div>
-        <div style={{ textAlign: "center", width: '100%' }}>TODDTAYLOR.SOLUTIONS</div>
+        <div style={{ 
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 'auto'
+        }}>WESSVEX.SOLUTIONS</div>
         <div style={{ 
           textAlign: "center", 
           borderRight: '2px solid black', 
@@ -127,7 +136,8 @@ function App() {
           justifyContent: 'center',
           padding: '0 10px',
           minWidth: '100px',
-          fontVariantNumeric: 'tabular-nums'
+          fontVariantNumeric: 'tabular-nums',
+          marginLeft: 'auto'
         }}>{time.toLocaleTimeString()}</div>
         <div style={{ textAlign: "center", paddingRight: '20px' }}>{time.toLocaleDateString()}</div>
       </header>
@@ -154,7 +164,7 @@ function App() {
                 whiteSpace: 'nowrap',
               }}
               onMouseDown={handleMouseDown}
-              >/home
+              >/tabernacle
             </li>
   
             <li
@@ -183,7 +193,8 @@ function App() {
 
             {/* Close button */}
             <li
-              style={{    
+              style={{  
+                title: "Unavailable - Resize",
                 height: "30px",
                 width: "30px",
                 backgroundImage: "url(/media/Box_Close.png)",
@@ -199,11 +210,11 @@ function App() {
 
         {!isMinimized && (
           <>
-        <h1>todd <br /> taylor</h1>
+        <h1>wessly <br /> vex</h1>
         <h2 style={{ textAlign: "right", paddingRight: "5%" }}>
-          <span style={{ color: "#282828" }}>S</span>oftware <span style={{ color: "#282828" }}>E</span>ngineer <br />
+          <span style={{ color: "#282828" }}>C</span>reative <span style={{ color: "#282828" }}>S</span>olutions <br />
           <span style={{ color: "#282828" }}>/</span>
-          <span style={{ color: "#282828" }}>W</span>eb <span style={{ color: "#282828" }}>D</span>ev
+          <span style={{ color: "#282828" }}>T</span>abula <span style={{ color: "#282828" }}>R</span>asa
         </h2>
 
         {/* Section buttons GO HERE*/}
@@ -230,6 +241,15 @@ function App() {
           <img src={isAboutMeOpen ? "/media/AboutMe_4.png" : "/media/AboutMe_1.png"} alt="About" />
         </button>
 
+        <button className="priorWork" onClick={() => {
+          if (!isPriorWorkOpen) {
+            setPriorWorkPosition(getRandomPosition());
+          }
+          setIsPriorWorkOpen(prev => !prev);
+        }}>
+          <img src={isPriorWorkOpen ? "/media/PriorWork_4.png" : "/media/PriorWork_2.png"} alt="Prior Work" />
+        </button>
+
         <button className="textFlutter" onClick={() => {
           if (!isTextFlutterOpen) {
             setTextFlutterPosition(getRandomPosition());
@@ -249,6 +269,7 @@ function App() {
       {isAboutMeOpen && <About initialPosition={aboutMePosition} aboutMeOpenPopup={setIsAboutMeOpen} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
       {isAboutPictureOneOpen && <AboutPictureOne initialPosition={aboutPictureOnePosition} aboutPictureOneOpenPopup={setIsAboutPictureOneOpen} />}
       {isAboutPictureTwoOpen && <AboutPictureTwo initialPosition={aboutPictureTwoPosition} aboutPictureTwoOpenPopup={setIsAboutPictureTwoOpen} />}
+      {isPriorWorkOpen && <PriorWork initialPosition={priorWorkPosition} priorWorkOpenPopup={setIsPriorWorkOpen} />}
       {isTextFlutterOpen && <TextFlutter initialPosition={textFlutterPosition} textFlutterOpenPopup={setIsTextFlutterOpen} />}
 
     </div>
