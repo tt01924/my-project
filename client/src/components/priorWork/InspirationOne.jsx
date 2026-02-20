@@ -45,7 +45,7 @@ const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
         top: position.y,
         left: position.x,
         width: size.width,
-        height: isExpanded ? size.height + 80 : size.height,
+        height: isExpanded ? (size.height - 20) + 100 : size.height,
         cursor: isDragging ? "grabbing" : "default",
         backgroundColor: '#f0f0f0',
         border: "2px solid black",
@@ -66,7 +66,7 @@ const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
             }}
             onMouseDown={handleMouseDown}
           >
-            /Inspiration/One
+            /Photo/One
           </li>
 
           <li
@@ -138,10 +138,36 @@ const InspirationOne = ({ inspirationOneOpenPopup, initialPosition }) => {
           backgroundColor: '#ffffff',
           border: '2px solid black',
           cursor: 'pointer',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          backgroundImage: isExpanded ? 'none' : 'url(/media/down.png)',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '16px 16px'
         }}
         onClick={handleDivClick}
       >
+        {isExpanded && (
+          <div style={{ 
+            overflow: 'auto',
+            height: '80px',
+            overflowWrap: 'break-word',
+            fontSize: '15px',
+            margin: 0, 
+            paddingTop: "10px", 
+            paddingLeft: "5%", 
+            paddingRight: "5%", 
+            paddingBottom: "5px", 
+            color: "#969696", 
+            fontFamily: "pTagFont" 
+          }}>
+            <h3 style={{ color: "#0000ff", fontSize: "20px", marginTop: "-3px" }}> Photo/One </h3>
+            <p style={{ marginTop: "-21px" }}> ------------- </p>
+            <p style={{ marginTop: "-10px" }}>
+            &gt; Yeh.
+            </p>
+            <p style={{ marginTop: "-10px" }}> ------------- </p>
+          </div>
+        )}
       </div>
     </div>
   );

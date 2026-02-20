@@ -117,7 +117,12 @@ function App() {
       }}>
       <header style={{ display: 'flex', alignItems: 'center', position: 'relative', height: '40px' }}>
         <div style={{ position: 'absolute', left: "2%" }}>No. <span id="visitor-count">...</span></div>
-        <div style={{ textAlign: "center", width: '100%' }}>WESSVEX.SOLUTIONS</div>
+        <div style={{ 
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 'auto'
+        }}>WESSVEX.SOLUTIONS</div>
         <div style={{ 
           textAlign: "center", 
           borderRight: '2px solid black', 
@@ -131,7 +136,8 @@ function App() {
           justifyContent: 'center',
           padding: '0 10px',
           minWidth: '100px',
-          fontVariantNumeric: 'tabular-nums'
+          fontVariantNumeric: 'tabular-nums',
+          marginLeft: 'auto'
         }}>{time.toLocaleTimeString()}</div>
         <div style={{ textAlign: "center", paddingRight: '20px' }}>{time.toLocaleDateString()}</div>
       </header>
@@ -158,7 +164,7 @@ function App() {
                 whiteSpace: 'nowrap',
               }}
               onMouseDown={handleMouseDown}
-              >/home
+              >/tabernacle
             </li>
   
             <li

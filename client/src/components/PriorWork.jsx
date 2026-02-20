@@ -2,7 +2,9 @@ import { useState } from 'react';
 import '../defaultBoxStyle/nav.css'
 import useDraggable from '../hooks/useDraggable';
 import '../defaultBoxStyle/mainSection.css';
-import InspirationOne from './priorWork/InpirationOne';
+import InspirationOne from './priorWork/InspirationOne';
+import InspirationTwo from './priorWork/InspirationTwo';
+import InspirationThree from './priorWork/InspirationThree';
 
 const PriorWork = ({ priorWorkOpenPopup, initialPosition }) => {
 
@@ -24,6 +26,12 @@ const PriorWork = ({ priorWorkOpenPopup, initialPosition }) => {
 
   const [isInspirationOneOpen, setIsInspirationOneOpen] = useState(false);
   const [inspirationOnePosition, setInspirationOnePosition] = useState(() => getRandomPosition());
+
+  const [isInspirationTwoOpen, setIsInspirationTwoOpen] = useState(false);
+  const [inspirationTwoPosition, setInspirationTwoPosition] = useState(() => getRandomPosition());
+
+  const [isInspirationThreeOpen, setIsInspirationThreeOpen] = useState(false);
+  const [inspirationThreePosition, setInspirationThreePosition] = useState(() => getRandomPosition());
 
   // Use the custom draggable hook
   const {
@@ -158,6 +166,25 @@ const PriorWork = ({ priorWorkOpenPopup, initialPosition }) => {
               }}>
               <img src={isInspirationOneOpen ? "/media/FolderBlue.png" : "/media/FolderGrey.png"} alt="Inspiration" /> 
           </button>
+
+          <button className="inpiration" onClick={() => {
+              if (!isInspirationTwoOpen) {
+                  setInspirationTwoPosition(getRandomPosition());
+              }
+              setIsInspirationTwoOpen(!isInspirationTwoOpen);
+              }}>
+              <img src={isInspirationTwoOpen ? "/media/FolderBlue.png" : "/media/FolderGrey.png"} alt="Inspiration" /> 
+          </button>
+
+          <button className="inpiration" onClick={() => {
+              if (!isInspirationThreeOpen) {
+                  setInspirationThreePosition(getRandomPosition());
+              }
+              setIsInspirationThreeOpen(!isInspirationThreeOpen);
+              }}>
+              <img src={isInspirationThreeOpen ? "/media/FolderBlue.png" : "/media/FolderGrey.png"} alt="Inspiration" /> 
+          </button>
+          
           <p style={{ margin: 0, paddingLeft: "5%", paddingRight: "5%", color: "#282828", fontFamily: "pTagFont" }}> ---</p>
           
           <h3 style={{ margin: 0, paddingTop: "10px", paddingLeft: "7%", paddingRight: "5%", color: "#0000ff", fontFamily: "pTagFont", fontSize: "28px" }}> &gt; In a week </h3>
@@ -173,6 +200,18 @@ const PriorWork = ({ priorWorkOpenPopup, initialPosition }) => {
         <InspirationOne 
           initialPosition={inspirationOnePosition} 
           inspirationOneOpenPopup={setIsInspirationOneOpen} 
+        />
+      )}
+      {isInspirationTwoOpen && (
+        <InspirationTwo
+          initialPosition={inspirationTwoPosition}
+          inspirationTwoOpenPopup={setIsInspirationTwoOpen}
+        />
+      )}
+      {isInspirationThreeOpen && (
+        <InspirationThree
+          initialPosition={inspirationThreePosition}
+          inspirationThreeOpenPopup={setIsInspirationThreeOpen}
         />
       )}
     </>
