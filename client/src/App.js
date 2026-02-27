@@ -1,7 +1,7 @@
 import './App.css';
 import './defaultBoxStyle/nav.css';
 import './defaultBoxStyle/mainSection.css';
-import { useState, useEffect, useRef, use } from 'react';
+import { useState, useEffect } from 'react';
 import Contact from './components/Contact';
 import About from './components/About';
 import AboutPictureOne from './components/AboutPictureOne';
@@ -42,8 +42,7 @@ function App() {
   const [textFlutterPosition, setTextFlutterPosition] = useState(null);
 
   const [time, setTime] = useState(new Date());
-
-  const hasFetchedRef = useRef(false);
+  const [visitorCount, setVisitorCount] = useState('...');
 
   const API_URL = "https://i4av4bvmh6.execute-api.eu-north-1.amazonaws.com/prod/count"
 
@@ -57,16 +56,48 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // if (hasFetchedRef.current) return;
-    // hasFetchedRef.current = true;
-
     async function fetchVisitorCount() {
-      const res = await fetch(API_URL, { method: 'POST' });
-      const data = await res.json();
-      document.getElementById('visitor-count').textContent = data.count;
+      try {
+        console.log('Fetching visitor count from:', API_URL);
+        
+        // Simple fetch without any custom headers to avoid preflight
+        const res = await fetch(API_URL);
+        
+        console.log('Response status:', res.status);
+        console.log('Response ok:', res.ok);
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status} - ${res.statusText}`);
+        }
+        
+        const data = await res.json();
+        console.log('Visitor count response:', data);
+        
+        if (data && typeof data.count !== 'undefined') {
+          setVisitorCount(data.count);
+          console.log('Visitor count set to:', data.count);
+        } else {
+          console.error('Invalid data structure received:', data);
+          setVisitorCount('N/A');
+        }
+      } catch (error) {
+        console.error('Failed to fetch visitor count:', error.message);
+        console.error('Full error object:', error);
+        
+        // Set a more specific error message
+        if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+          setVisitorCount('Offline');
+        } else if (error.message.includes('CORS')) {
+          setVisitorCount('CORS Error');
+        } else {
+          setVisitorCount('Error');
+        }
+      }
     }
 
-    fetchVisitorCount().catch(console.error);
+    // Add a small delay to ensure the DOM is fully loaded
+    const timer = setTimeout(fetchVisitorCount, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -140,7 +171,7 @@ function App() {
           whiteSpace: 'nowrap',
           color: 'black',
           fontSize: isMobile ? '12px' : 'inherit'
-        }}>No. <span id="visitor-count">...</span></div>
+        }}>No. <span id="visitor-count">{visitorCount}</span></div>
         
         {!isMobile && (
           <div style={{ 
