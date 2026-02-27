@@ -45,7 +45,7 @@ function App() {
 
   const hasFetchedRef = useRef(false);
 
-  const API_URL = "https://h50gsrncag.execute-api.eu-west-2.amazonaws.com/count"
+  const API_URL = "https://i4av4bvmh6.execute-api.eu-north-1.amazonaws.com/prod/count"
 
   // Handle window resize
   useEffect(() => {
@@ -57,8 +57,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (hasFetchedRef.current) return;
-    hasFetchedRef.current = true;
+    // if (hasFetchedRef.current) return;
+    // hasFetchedRef.current = true;
 
     async function fetchVisitorCount() {
       const res = await fetch(API_URL, { method: 'POST' });
