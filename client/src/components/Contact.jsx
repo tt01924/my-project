@@ -179,6 +179,7 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  style={{ fontFamily: "pageFont" }}
                 />
               </div>
 
@@ -190,6 +191,7 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  style={{ fontFamily: "pageFont" }}
                 />
               </div>
 
@@ -200,6 +202,7 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
                   name="mobile"
                   value={formData.mobile}
                   onChange={handleChange}
+                  style={{ fontFamily: "pageFont" }}
                 />
               </div>
 
@@ -211,6 +214,7 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
+                  style={{ fontFamily: "pageFont" }}
                 />
               </div>
 
@@ -222,6 +226,7 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  style={{ fontFamily: "pageFont" }}
                 />
               </div>
               <div style={{ float: 'right', marginTop: '-15px' }}>
