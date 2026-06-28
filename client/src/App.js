@@ -44,7 +44,7 @@ function App() {
   const [time, setTime] = useState(new Date());
   const [visitorCount, setVisitorCount] = useState('...');
 
-  const API_URL = "https://i4av4bvmh6.execute-api.eu-north-1.amazonaws.com/prod/count"
+  const API_URL = `${process.env.REACT_APP_AWS_API_URL}/count`;
 
   // Handle window resize
   useEffect(() => {

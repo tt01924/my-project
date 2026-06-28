@@ -50,8 +50,8 @@ const Contact = ({ contactOpenPopup, initialPosition }) => {
     setIsLoading(true);
 
     try {
-      // Use Render API for contact form
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/contact`, {
+      // Use AWS API for contact form
+      const res = await fetch(`${process.env.REACT_APP_AWS_API_URL}/sendEmail`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
